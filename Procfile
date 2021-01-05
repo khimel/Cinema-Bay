@@ -1,1 +1,1 @@
-web: gunicorn APPLICATION-SOURCE-CODE/server:app
+web: gunicorn server:app
