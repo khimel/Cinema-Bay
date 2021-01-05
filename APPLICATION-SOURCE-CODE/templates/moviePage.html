@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block title %} {{query}}  {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="static/moviePage.css">
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="topnav">
+  	<a class="active" href="#home">Home</a>
+  	<a href="#about">About</a>
+  	<a href="#contact">Contact</a>
+	</div>
+<div class="container">
+		<div class="row movie-container">
+			<div class="col-3  no-gutters">
+				<div id="accordion">
+					  <div class="card" id="ac-card1">
+					    <div class="card-header" id="headingOne">
+					      <h5 class="mb-0">
+					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					          Box Office
+					        </button>
+					      </h5>
+					    </div>
+
+					    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+					      <div class="card-body">
+					        <table class="card-text" id="BoxOffice">
+					        	<tr>
+					        		<th>Budget:</th>
+					        		<td>$25,000,000 (estimated)</td>
+					        	</tr>
+					        	<tr>
+					        		<th>Opening Weekend USA:</th>
+					        		<td>$727,327, 25 September 1994</td>
+					        	</tr>
+					        	<tr>
+					        		<th>Gross USA:</th>
+					        		<td>$28,699,976</td>
+					        	</tr>
+					        	<tr>
+					        		<th>Cumulative Worldwide Gross:</th>
+					        		<td>$28,815,291</td>
+					        	</tr>
+					        </table>
+					      </div>
+					    </div>
+					  </div>
+					  <div class="card" id="ac-card2">
+					    <div class="card-header" id="headingTwo">
+					      <h5 class="mb-0">
+					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					          Awards
+					        </button>
+					      </h5>
+					    </div>
+					    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+					      <div class="card-body">
+					       
+					      </div>
+					    </div>
+					  </div>
+					  <div class="card" id="ac-card3">
+					    <div class="card-header" id="headingThree">
+					      <h5 class="mb-0">
+					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					          Collapsible Group Item #3
+					        </button>
+					      </h5>
+					    </div>
+					    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+					      <div class="card-body">
+					        
+					    </div>
+					  </div>
+					</div>
+			</div>
+			</div>
+			<div class="col-6">
+				<div class="col">
+					
+				</div>
+				<div class ="col row-movie">
+					<div class="col-12">
+						<h2 class="movie-title" > Dark Knight </h2>
+					</div>
+					
+				<div class ="col movie-synopsis">
+				<p>
+					When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.
+				</p>
+				 
+				 
+  				<div class="card" id="mid-navbar">
+				  <div class="card-header">
+				    <ul class="nav nav-tabs card-header-tabs">
+				      <li class="nav-item">
+				      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#storyline" aria-expanded="false" aria-controls="storyline">Storyline</button>
+				      </li>
+				      <li class="nav-item">
+				       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2">tab2</button>
+				      </li>
+				      <li class="nav-item">
+				       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3">tab3</button>
+				      </li>
+				    </ul>
+				  </div>
+				  <div class="card-body">
+				    <p id="storyline" class="card-text collapse">Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as "The Joker" appears in Gotham, creating a new wave of chaos. Batman's struggle against The Joker becomes deeply personal, forcing him to "confront everything he believes" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes. Written by Leon Lombardi</p>
+				    <p id="tab2" class="card-text collapse"></p>
+				    <p id="tab3" class="card-text collapse"></p>
+				  </div>
+				</div>
+
+				 </div>
+				</div>
+				<div class="col-12 no-gutters">
+					
+				</div>
+			
+			</div>
+			
+			
+		<div class="col-3 movie-RSD align-content-center">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">PREMIERE</h5>
+					<p class="card-text">4 October 2019</p>
+				</div>
+			</div>
+
+		<!--**********************************-->	
+			
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title" >DIRECTOR</h5>
+					<p class="card-text">directpr's name</p>
+				</div>
+			</div>
+
+		<!--**********************************-->	
+			
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">MUSIC BY</h5>
+					<p class="card-text">music composer</p>
+				</div>
+			</div>
+
+		<!--**********************************-->	
+
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">GENRE</h5>
+					<p class="card-text">Suspence, Thriller</p>
+				</div>
+			</div>
+
+		<!--**********************************-->
+			
+			<div class="card no-gutters" id="myVideo">
+			<iframe  src="https://www.youtube.com/embed/EXeTwQWrcwY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+
+		<!--**********************************-->
+	
+		</div>
+</div>
+</div>
+<script>
+
+//var btn = document.getElementById("myBtn");
+
+function myFunction() {
+	var x = document.getElementById("myBtn").textContent;
+  if (x=="Read more") {
+    document.getElementById("myBtn").textContent="Read less";
+  } else{
+    document.getElementById("myBtn").textContent="Read more";
+  }
+}
+</script>
+{% endblock %}

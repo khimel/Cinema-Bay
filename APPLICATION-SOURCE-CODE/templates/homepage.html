@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %} Cinema Bay {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="static/homepage.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Limelight&family=Staatliches&display=swap" rel="stylesheet">
+
+
+
+  <script>
+	var availableTags = {{ movieNames|safe}};
+  $( function() {
+    $("#searchBar").autocomplete({source: availableTags});
+  });
+  </script>
+
+{% endblock %}
+
+{% block body %}
+ 
+<div id="background-carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+		<div class="carousel-item item active" style="background-image:url(static/batman.jpg)">
+			<div class="carousel-caption d-none d-flex justify-content-center">
+				<form class="form" action="/search" method="GET">
+					<input class="btn btn-lg btn-primary blacky" type="submit" name="query" value="Batman: The Dark Knight">
+				</form>
+			  </div>
+		</div>
+		<div class="carousel-item item" style="background-image:url(static/hungergames.jpg)">
+			<div class="carousel-caption d-none d-flex justify-content-center">
+				<form class="form" action="/search" method="GET">
+					<input class="btn btn-lg btn-primary blacky" type="submit" name="query" value="The Hunger Games">
+				</form>
+			  </div>
+		</div>
+		<div class="carousel-item item" style="background-image:url(static/trans.jpg)">
+			
+			<div class="carousel-caption d-none d-flex justify-content-center">
+				<form class="form" action="/search" method="GET">
+					<input class="btn btn-lg btn-primary blacky" type="submit" name="query" value="Transformers">
+				</form>
+			  </div>
+			
+		</div>  
+      </div>
+	</div>
+</div>
+
+<div class="container h-100" id="content-wrapper">
+
+
+		<div class="row h-100 justify-content-center align-items-center">
+
+			<div class="container">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-12">
+						<h1 class="text-light text-center" id="homeHeader">
+							Cinema Bay
+						</h1>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-md-8">
+						<form class="form" action="/search" method="GET" >
+							<div class="">
+								<input class="form-control" id="searchBar" type="text" name="query" placeholder="Search for a movie" required/>
+							</div>
+							<div class="text-center mt-3">
+								<button class="btn btn-success btn-lg" type="submit">Search</button>
+							</div>	
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+</div>
+
+
+
+{% endblock %}
