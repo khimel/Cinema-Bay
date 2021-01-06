@@ -10,7 +10,7 @@
 
 
   <script>
-	var availableTags = {{ movieNames|safe}};
+	var availableTags = {{ movieNames|safe }};
   $( function() {
     $("#searchBar").autocomplete({source: availableTags});
   });
