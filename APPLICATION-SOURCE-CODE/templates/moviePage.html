@@ -8,14 +8,15 @@
 
 {% block body %}
 
-
-	<div class="topnav">
+<div class="topnav">
   	<a class="active" href="#home">Home</a>
   	<a href="#about">About</a>
   	<a href="#contact">Contact</a>
-	</div>
+</div>
+
+
 <div class="container">
-		<div class="row movie-container">
+	<div class="row movie-container">
 			<div class="col-3  no-gutters">
 				<div id="accordion">
 					  <div class="card" id="ac-card1">
@@ -169,19 +170,19 @@
 		<!--**********************************-->
 	
 		</div>
+	</div>
 </div>
-</div>
-<script>
+	<script>
 
-//var btn = document.getElementById("myBtn");
+		//var btn = document.getElementById("myBtn");
 
-function myFunction() {
-	var x = document.getElementById("myBtn").textContent;
-  if (x=="Read more") {
-    document.getElementById("myBtn").textContent="Read less";
-  } else{
-    document.getElementById("myBtn").textContent="Read more";
-  }
-}
-</script>
+		function myFunction() {
+			var x = document.getElementById("myBtn").textContent;
+			if (x=="Read more") {
+				document.getElementById("myBtn").textContent="Read less";
+			} else{
+				document.getElementById("myBtn").textContent="Read more";
+			}
+		}
+	</script>
 {% endblock %}
