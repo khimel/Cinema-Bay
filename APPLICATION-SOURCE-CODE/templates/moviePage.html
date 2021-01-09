@@ -3,7 +3,7 @@
 {% block title %} {{query}}  {% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="static/moviePage.css">
+<link rel="stylesheet" href="static/moviepage.css">
 {% endblock %}
 
 {% block body %}
@@ -14,11 +14,12 @@
   	<a href="#contact">Contact</a>
 </div>
 
+<!--------------------------------------------------------->
 
 <div class="container">
 	<div class="row movie-container">
-			<div class="col-3  no-gutters">
-				<div id="accordion">
+			<div class="col-md-3  no-gutters  order-second order-sm-first">
+				<div id="accordion" class="col-12">
 					  <div class="card" id="ac-card1">
 					    <div class="card-header" id="headingOne">
 					      <h5 class="mb-0">
@@ -51,11 +52,11 @@
 					      </div>
 					    </div>
 					  </div>
-					  <div class="card" id="ac-card2">
+					  <div class="card" id="Awards">
 					    <div class="card-header" id="headingTwo">
 					      <h5 class="mb-0">
 					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					          Awards
+					          Academy Awards, USA
 					        </button>
 					      </h5>
 					    </div>
@@ -69,52 +70,118 @@
 					    <div class="card-header" id="headingThree">
 					      <h5 class="mb-0">
 					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					          Collapsible Group Item #3
+					          Cast
 					        </button>
 					      </h5>
 					    </div>
 					    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-					      <div class="card-body">
-					        
+					      <div class="card-body" id="cast">
+					        <div class="row no-gutters">
+						<div class="col-6 col-sm-4">
+							<img  class="img-fluid img-thumbnail"  src="https://images.unsplash.com/photo-1445810694374-0a94739e4a03?w=100&h=100&fit=crop">
+							<p>Actor's name</p>
+						</div>
+					  
+						<div class="col-6 col-sm-4">
+							 <img  class="img-fluid img-thumbnail"  src="https://images.unsplash.com/photo-1515260268569-9271009adfdb?w=100&h=100&fit=crop">
+							 <p>Actor's name</p>
+						</div>
+					 	<div class="col-6 col-sm-4">
+					 		  <img class="img-fluid img-thumbnail"  src="https://images.unsplash.com/photo-1506045412240-22980140a405?w=100&h=100&fit=crop">		
+					 		  <p>Actor's name</p>
+					 	</div>
+					 	<div class="col-6 col-sm-4">
+							<img class="img-fluid img-thumbnail" src="https://images.unsplash.com/photo-1514041181368-bca62cceffcd?w=100&h=100&fit=crop">
+							<p>Actor's name</p>
+						</div>
+						<div class="col-6 col-sm-4">
+							<img class="img-fluid img-thumbnail" src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=100&h=100&fit=crop">
+							<p>Actor's name</p>
+						</div>
+					  	<div class="col-6 col-sm-4">
+					  		<img class="img-fluid img-thumbnail" src="https://images.unsplash.com/photo-1486334803289-1623f249dd1e?w=100&h=100&fit=crop">
+					  		<p>Actor's name</p>
+					  	</div>
+					</div>
+					
+						
+					
 					    </div>
 					  </div>
 					</div>
 			</div>
+				<div class="card no-gutters" id="movieTrailer">
+			<iframe  src="{{ context.Trailer }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
-			<div class="col-6">
+			</div>
+			<div class="col-md-6 order-first order-sm-second">
 				<div class="col">
 					
 				</div>
 				<div class ="col row-movie">
 					<div class="col-12">
-						<h2 class="movie-title" > Dark Knight </h2>
+						<h2 class="movie-title" > {{context.Title}} </h2> <i class="fa fa-star" style="font-size:24px;"></i>{{context.Raiting}}<sub>/10</sub> </span>
 					</div>
 					
 				<div class ="col movie-synopsis">
-				<p>
-					When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.
+				<p> {{context.Synopsis}}
+				
 				</p>
 				 
 				 
   				<div class="card" id="mid-navbar">
 				  <div class="card-header">
-				    <ul class="nav nav-tabs card-header-tabs">
-				      <li class="nav-item">
-				      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#storyline" aria-expanded="false" aria-controls="storyline">Storyline</button>
+				    <ul class="nav nav-tabs ">
+				      <li class="nav-item ">
+				      <button class="btn btn-link  collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline">Storyline</button>
 				      </li>
 				      <li class="nav-item">
-				       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2">tab2</button>
+				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2">Academy Awards, USA</button>
 				      </li>
 				      <li class="nav-item">
-				       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3">tab3</button>
+				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3">tab3</button>
 				      </li>
 				    </ul>
 				  </div>
-				  <div class="card-body">
-				    <p id="storyline" class="card-text collapse">Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as "The Joker" appears in Gotham, creating a new wave of chaos. Batman's struggle against The Joker becomes deeply personal, forcing him to "confront everything he believes" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes. Written by Leon Lombardi</p>
-				    <p id="tab2" class="card-text collapse"></p>
-				    <p id="tab3" class="card-text collapse"></p>
+				  <div class="card-body " >
+				  	<div class="collapse show" id="storyline" data-parent="#mid-navbar">
+				  	<div class="card">
+				  		<div class="card-body">
+				  			<p  class="card-text ">{{context.StoryLine}}</p>
+				  		</div>
+				  	</div>
+				    </div>
+				    <div class="collapse" id="tab2" data-parent="#mid-navbar">
+				    <div class="card">
+				    	<div class="card-body">
+				    		<h5>winner</h5>
+				    		<ul>
+				    			<li>Best Performance by an Actor in a Supporting Role
+								Heath Ledger</li>
+				    			<li>Best Achievement in Sound Editing
+									Richard King</li>
+				    		</ul>
+
+				    		<h5>Nominee</h5>
+				    		<ul>
+				    			<li>Best Achievement in Cinematography
+								Wally Pfister</li>
+				    			<li>Best Achievement in Film Editing
+								Lee Smith</li>
+				    		</ul>
+				   
 				  </div>
+				    </div>
+				    </div>
+				    <div class="collapse" id="tab3" data-parent="#mid-navbar">
+				   <div class="card" >
+				   	 <div class="card-body">
+				   	 	 <p  class="card-text collapse"></p>
+				   	 </div>
+				   </div> 
+				   </div>
+				    </div>
+				    
 				</div>
 
 				 </div>
@@ -126,11 +193,11 @@
 			</div>
 			
 			
-		<div class="col-3 movie-RSD align-content-center">
+		<div class="col-md-3 movie-RSD align-content-center xs-order-3">
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">PREMIERE</h5>
-					<p class="card-text">4 October 2019</p>
+					<p class="card-text">{{context.Premiere}}</p>
 				</div>
 			</div>
 
@@ -139,7 +206,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title" >DIRECTOR</h5>
-					<p class="card-text">directpr's name</p>
+					<p class="card-text">{{context.Director}}</p>
 				</div>
 			</div>
 
@@ -147,8 +214,8 @@
 			
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">MUSIC BY</h5>
-					<p class="card-text">music composer</p>
+					<h5 class="card-title">Filming Locations</h5>
+					<p class="card-text">{{context.FL}}</p>
 				</div>
 			</div>
 
@@ -157,21 +224,51 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">GENRE</h5>
-					<p class="card-text">Suspence, Thriller</p>
+					<p class="card-text">{{context.Genres}}</p>
 				</div>
 			</div>
 
 		<!--**********************************-->
 			
-			<div class="card no-gutters" id="myVideo">
-			<iframe  src="https://www.youtube.com/embed/EXeTwQWrcwY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			</div>
+			
 
 		<!--**********************************-->
 	
 		</div>
 	</div>
-</div>
+	<h3 class="font-weight-light text-center  mt-4 mb-0">More Like This</h3>
+
+  <hr class="mt-2 mb-5">
+
+  <div class="row text-center d-flex justify-content-around">
+
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 ">
+            <img class="img-fluid img-thumbnail" src="#" alt="">
+          </a>
+          <p>#</p>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 ">
+            <img class="img-fluid img-thumbnail" src="#" alt="">
+          </a>
+          <p>#</p>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 ">
+            <img class="img-fluid img-thumbnail" src="#" alt="">
+          </a>
+          <p>#</p>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4">
+            <img class="img-fluid img-thumbnail" src="#" alt="">
+          </a>
+          <p>#</p>
+    </div>
+      </div>
+
+	</div>
 	<script>
 
 		//var btn = document.getElementById("myBtn");
@@ -185,4 +282,5 @@
 			}
 		}
 	</script>
+	
 {% endblock %}

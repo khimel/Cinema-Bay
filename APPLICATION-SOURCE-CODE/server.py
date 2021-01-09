@@ -24,10 +24,21 @@ def index():
 @app.route('/search')
 def search_return_html():
     query = request.args.get('query')
+    context={
+		'Title': 'The Dark Knight',
+		'StoryLine': "Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as -The Joker- appears in Gotham, creating a new wave of chaos. Batman's struggle against The Joker becomes deeply personal, forcing him to confront everything he believes and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes. Written by Leon Lombardi",
+		'Synopsis': "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+		'Premiere': '4 October 2019',
+		'Director': 'Christopher Nolan',
+		'FL': 'Chicago, Illinois, USA',
+		'Genres': 'Action | Crime | Drama | Thriller',
+		'Trailer': 'https://www.youtube.com/embed/EXeTwQWrcwY',
+		'Raiting':'9.5',
+	}
     # if this movie is not from the auto complete, we redirect him for an "not found" html
         # return render_template('notFound.html', query=query)
     # with connector get to your mysql server and query the DB
-    return render_template('moviePage.html',query=query)
+    return render_template('moviepage.html',query=query,context=context)
 
 
 
