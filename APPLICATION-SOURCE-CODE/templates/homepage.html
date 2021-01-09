@@ -29,7 +29,7 @@
         
         <ol class="carousel-indicators">
         {% for i in range((movies|length)// 3) %}
-        <li data-target="#myCarousel" data-slide-to="{{i}}" class="{{ 'active' if loop.index|string == "1" }}"></li>
+        <li id="carousel-indicator" data-target="#myCarousel" data-slide-to="{{i}}" class="{{ 'active' if loop.index|string == "1" }}"></li>
         {% endfor %}
         </ol>
         

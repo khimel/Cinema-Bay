@@ -25,6 +25,9 @@ html,body {
 	background-size:cover;
 	z-index:0;
 }
+#carousel-indicator{
+	height: 30px;
+}
 
 #content-wrapper {
 
