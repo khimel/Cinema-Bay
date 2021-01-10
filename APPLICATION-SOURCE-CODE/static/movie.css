@@ -1,4 +1,4 @@
-body, .my-container, .container{
+body, .my-container{
     margin: 0;
     padding: 0;
     max-width: none;
@@ -9,8 +9,19 @@ box-sizing: border-box;
 }
 
 body {
-font-size: 17px;
 background-color: lightgrey;
+}
+
+/* Top nav bar -- mhamad */
+
+#topnav{
+  background-color: black;
+}
+
+#topnav-brand{
+  font-family: 'Limelight', cursive;
+  font-size: 1.4rem;
+  color: white;
 }
 
 #myBtn {
@@ -58,25 +69,6 @@ color: white;
 margin: 20px 2% !important;
 font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif; 
 /*font-size: 72px;*/
-}
-
-.topnav  {
-overflow: hidden;
-background-color: black;
-}
-.topnav a {
-float: left;
-display: block;
-color: white;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 17px;
-}
-
-.topnav a:hover {
-background-color: #ddd;
-color: black;
 }
 
 .transparent {
@@ -161,6 +153,7 @@ font-size: 17px;
 #storyline .card-body{
   padding: 0;
 }
+
 #mid-navbar button{
   border-radius: 0;
   background-color: black;
@@ -177,3 +170,22 @@ font-size: 17px;
     padding: 2px; 
   }
 /*<---------------------imageGalery------------>*/
+
+
+.carousel,
+.carousel-inner {
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:hidden;
+}
+.item{
+	width:100%;
+	height:100%;
+	background-position:center center;
+	background-size:cover;
+	z-index:0;
+}
+#carousel-indicator{
+	height: 30px;
+}

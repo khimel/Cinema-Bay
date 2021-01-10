@@ -17,7 +17,7 @@
 		}	
   		});
 	});
-  </script>
+</script>
 
 {% endblock %}
 
@@ -36,21 +36,21 @@
 
         <div class="carousel-inner" role="listbox">
         {% for row in movies|batch(3) %}
-        <div class="carousel-item item {% if loop.index|string == "1" %} active {% endif %}">
-            <div class="row h-100">
-                {% for movie in row %}
-                <div class="col-md-4 p-0 {% if loop.index|string != "1" %} clearfix d-none d-md-block {% endif %}">
-                    <div class="card h-100">
-                        <a class="h-100" href="/search?query={{ movie["name"] }}">
-                            <img class="card-img h-100 " src="{{movie["poster"] }}"
-                            alt="Card image cap">
-                        </a>
+            <div class="carousel-item item {% if loop.index|string == "1" %} active {% endif %}">
+                <div class="row h-100">
+                    {% for movie in row %}
+                    <div class="col-md-4 p-0 {% if loop.index|string != "1" %} clearfix d-none d-md-block {% endif %}">
+                        <div class="card h-100">
+                            <a class="h-100" href="/search?query={{ movie["name"] }}">
+                                <img class="card-img h-100 " src="{{movie["poster"] }}"
+                                alt="Card image cap">
+                            </a>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
 
+                </div>
             </div>
-        </div>
         {% endfor %}
         </div>
 
