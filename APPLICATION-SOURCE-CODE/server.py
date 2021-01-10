@@ -36,10 +36,15 @@ def search_return_html():
 		'Trailer': 'https://www.youtube.com/embed/EXeTwQWrcwY',
 		'Raiting':'9.5',
 	}
+    topcast=[{'name':"Mhamad Khimel", "avg_rating":"10", "img":"https://media.self.com/photos/57d8a1044b76f0f832a0e34c/4:3/w_2560%2Cc_limit/leo-dicaprio-tux.jpg"},
+             {'name':"Yazan Zoabi", "avg_rating":"5.5", "img":"https://upload.wikimedia.org/wikipedia/commons/6/6f/Dwayne_Johnson_Hercules_2014_%28cropped%29.jpg"},
+             {'name':"Sumaya Saleh", "avg_rating":"9.9", "img":"https://www.biography.com/.image/t_share/MTE4MDAzNDEwNzQzMTY2NDc4/will-smith-9542165-1-402.jpg"},
+             {'name':"Muhammad Watad", "avg_rating":"9.5", "img":"https://m.media-amazon.com/images/M/MV5BMjExNzA4MDYxN15BMl5BanBnXkFtZTcwOTI1MDAxOQ@@._V1_.jpg"}
+    ]
     # if this movie is not from the auto complete, we redirect him for an "not found" html
         # return render_template('notFound.html', query=query)
     # with connector get to your mysql server and query the DB
-    return render_template('movie.html',query=query,context=context,movies=movies, movies_names=movies_names, movies_posters=movies_posters)
+    return render_template('movie.html',query=query,context=context,movies=movies, movies_names=movies_names, movies_posters=movies_posters, topcast=topcast)
 
 
 
