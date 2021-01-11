@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
 movies = [
@@ -15,16 +16,44 @@ movies = [
 movies_names = [movies[i]["name"] for i in range(len(movies))] # for auto complete
 movies_posters = [movies[i]["poster"] for i in range(len(movies))] # posters
 
+#global list with movie names for auto complete
+def get_movie_names():
+    # return a list of strings with all movie names in the db
+    pass
+
+def get_movie_posters():
+    #returns a list with [{"id":"nifen", "poster":"link to poster"},]
+    #size of list is 30
+    pass
+
+def get_details_by_name(name):
+    pass
+    #returns a dict with the details of the movie
+    # details =  {"film_id":"", "title":"", "year":"", "image":"", "summary":"","trailer":"", "raiting":"", "director":"", "awards":{"":int, "":int}, "genre":[], "locations":[], "providers":[size of max 3], ("topcast":[{"id":"", "name":"", "img":"", "avg_movie_rating":""}])}
+
+def get_details_by_id(film_id):
+    #same of the above
+    pass
+
+
+def more_like_this(film_id):
+    pass
+    #returns a list with [{"id":"nifen", "poster":"link to poster"},]
+
+
 
 @app.route('/')
 @app.route('/index')
 def index():
-    # here is a list that should be got from the db
+
     return render_template('home.html',movies=movies, movies_names=movies_names, movies_posters=movies_posters)
+
+
 
 @app.route('/search')
 def search_return_html():
     query = request.args.get('query')
+    # sanitize input
     context={
 		'Title': 'The Dark Knight',
 		'StoryLine': "Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as -The Joker- appears in Gotham, creating a new wave of chaos. Batman's struggle against The Joker becomes deeply personal, forcing him to confront everything he believes and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes. Written by Leon Lombardi",
