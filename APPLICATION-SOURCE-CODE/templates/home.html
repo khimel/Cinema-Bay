@@ -35,7 +35,7 @@
                     <div class="col-md-4 p-0 {% if loop.index|string != '1' %} clearfix d-none d-md-block {% endif %}">
                         <div class="card h-100">
                             <a class="h-100" href="/search?query={{ movie['title'] }}">
-                                <img intrinsicsize="429 x 966" class="card-img h-100 {{'lazy' if x == '2'}}"  {{ "src=" if x =='1' else "data-original=" }} "{{ movie['poster'] }}"
+                                <img class="card-img h-100 {{'lazy' if x == '2'}}"  {{ "src=" if x =='1' else "data-original=" }} "{{ movie['poster'] }}"
                                 alt="Card image cap">
                             </a>
                         </div>

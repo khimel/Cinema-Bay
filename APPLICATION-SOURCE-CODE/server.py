@@ -53,7 +53,7 @@ def get_movie_posters():
     rows = cur.fetchall()
 
     for row in rows:
-        film_map = {'title': row[0], 'poster': row[1].replace("_V1_", "_SL966_")}
+        film_map = {'title': row[0], 'poster': row[1].replace("_V1_", "_SL500_")}
         res.append(film_map)
 
     close_connection(cnx)
@@ -161,7 +161,7 @@ def get_details_by_id(film_id):
     close_connection(cnx)
 
     ##KHIMEL COMPRESSION
-    res['image'] = res['image'].replace("_V1_", "_SL966_")
+    res['image'] = res['image'].replace("_V1_", "_SL500_")
 
     res['awards'] = get_awards(film_id)
     res['genres'] = get_genres(film_id)
