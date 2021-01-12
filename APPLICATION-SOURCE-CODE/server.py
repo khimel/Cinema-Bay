@@ -232,7 +232,7 @@ def get_topcast(f_id):
 
     close_connection(cnx)
 
-    return res
+    return res[:5]
 
 movies_names = get_movie_names() #global list for auto complete
 
