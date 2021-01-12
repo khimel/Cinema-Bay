@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 
 import random
-import MySQLdb
-import MySQLdb.cursors
+
 import mysql.connector
+
 
 app = Flask(__name__)
 
@@ -45,11 +45,15 @@ def get_movie_names():
     res = []
 
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT DISTINCT title FROM FILM")
-
     rows = cur.fetchall()
 
+    #cur = cnx.cursor(mysql.connector.c)
+    #cur = cnx.cursor(PyMySQL.cursors.DictCursor)
+    #cur.execute("SELECT DISTINCT title FROM FILM")
+
+    #rows = cur.fetchall()
     for row in rows:
         res.append((row[0]))
 
@@ -65,9 +69,8 @@ def get_movie_posters():
     res = []
 
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT title, image FROM FILM")
-
     rows = cur.fetchall()
 
     for row in rows:
@@ -81,8 +84,9 @@ def get_movie_posters():
 
 # details =  {"film_id":"", "title":"", "year":"", "image":"", "summary":"","trailer":"", "raiting":"", "director":"", "awards":{"":int, "":int}, "genre":[], "locations":[], "providers":[size of max 3], ("topcast":[{"id":"", "name":"", "img":"", "avg_movie_rating":""}])}
 def get_details_by_name(name):
+    
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT film_id FROM FILM WHERE title = '%s'" % name)
 
     rows = cur.fetchall()
@@ -96,7 +100,7 @@ def get_awards(film_id):
     res = {}
 
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT award, count FROM FILM_AWARD WHERE film_id = '%s'" % film_id)
     rows = cur.fetchall()
 
@@ -111,7 +115,7 @@ def get_genres(film_id):
     res = []
 
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT genre FROM FILM_GENRE WHERE film_id = '%s'" % film_id)
     rows = cur.fetchall()
 
@@ -126,7 +130,7 @@ def get_locations(film_id):
     res = []
 
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT location FROM FILM_LOCATION WHERE film_id = '%s'" % film_id)
     rows = cur.fetchall()
 
@@ -142,7 +146,7 @@ def get_providers(film_id):
     res = []
 
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT provider FROM FILM_PROVIDER WHERE film_id = '%s'" % film_id)
     rows = cur.fetchall()
 
@@ -157,13 +161,13 @@ def get_providers(film_id):
 
     return res
 
-    
+
 def get_details_by_id(film_id):
 
     res = {}
 
     cnx = connect_to_mysql_server()
-    cur = cnx.cursor(MySQLdb.cursors.DictCursor)
+    cur = cnx.cursor()
     cur.execute("SELECT * FROM FILM WHERE film_id = '%s'" % film_id)
     rows = cur.fetchall()
 
