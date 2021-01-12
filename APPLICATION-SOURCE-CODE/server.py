@@ -53,7 +53,7 @@ def get_movie_posters():
     rows = cur.fetchall()
 
     for row in rows:
-        film_map = {'title': row[0], 'poster': row[1]}
+        film_map = {'title': row[0], 'poster': row[1].replace("_V1_", "_SL966_")}
         res.append(film_map)
 
     close_connection(cnx)
