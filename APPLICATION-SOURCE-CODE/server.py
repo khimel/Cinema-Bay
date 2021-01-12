@@ -205,6 +205,18 @@ def more_like_this(f_id, delta_year, delta_rating):
 
     return res
 
+def order_list(actors_list, ordered_actors):
+
+    ordered_list = []
+
+    for actor in ordered_actors:
+        for d in actors_list:
+            if d['id'] == actor:
+                ordered_list.append(d)
+                break
+
+    return ordered_list
+
 def get_topcast(f_id):
 
     res = []
@@ -212,7 +224,7 @@ def get_topcast(f_id):
     cnx = connect_to_mysql_server()
     cur = cnx.cursor()
 
-    query = ("SELECT ACTOR.actor_id, ACTOR.actor_name, ACTOR.birthdate, ACTOR.image, AVG(FILM.rating) "
+    query_1 = ("SELECT ACTOR.actor_id, ACTOR.actor_name, ACTOR.birthdate, ACTOR.image, AVG(FILM.rating) "
              "FROM ACTOR, FILM_STAR, FILM "                    
              "WHERE ACTOR.actor_id IN "
              "(SELECT actor_id "
@@ -223,10 +235,19 @@ def get_topcast(f_id):
              "GROUP BY ACTOR.actor_id;"
              )
 
-    cur.execute(query)
-    rows = cur.fetchall()
+    cur.execute(query_1)
+    rows_1 = cur.fetchall()
 
-    for row in rows:
+    query_2 =   ("SELECT actor_id "
+                "FROM FILM_STAR "
+                "WHERE FILM_STAR.film_id = " + "'%s'" % f_id +";")
+
+    cur.execute(query_2)
+    rows_2 = cur.fetchall()
+
+    ordered_actors = [rows_2[i][0] for i in range(0, len(rows_2))]
+
+    for row in rows_1:
 
         row_map = {}
         keys = ['id', 'name', 'birthdate', 'image', 'avg']
@@ -243,6 +264,8 @@ def get_topcast(f_id):
         res.append(row_map)
 
     close_connection(cnx)
+    
+    res = order_list(res, ordered_actors)
 
     if len(res) >= 10:
         res = res[:10]
