@@ -20,6 +20,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.js" integrity="sha512-FwqNPb8ENFXApJKNgRgYq5ok7VoOf5ImaOdzyF/xe/T5jdd/S0xq0CXBLDhpzaemxpQ61X3nLVln6KaczwhKgA==" crossorigin="anonymous"></script>
     
     <link rel="shortcut icon" href="#">
+    <script>
+      var availableTags = {{ movies_names|safe }};
+      console.log(availableTags);
+      
+    $( function() {
+      $("#searchBar").autocomplete({
+      source: function(request, response) {
+        var results = $.ui.autocomplete.filter(availableTags, request.term);
+        response(results.slice(0, 10));
+      }	
+        });
+      });
+  
+  
+      $(function() {
+          return $(".carousel").on("slide.bs.carousel", function(ev) {
+            $("img.lazy").lazyload();
+          });
+        });
+        
+  </script>
 
     <title>{% block title %}{% endblock %}</title>
     {% block head %}{% endblock %}

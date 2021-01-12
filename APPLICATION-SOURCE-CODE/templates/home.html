@@ -5,28 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Staatliches&display=swap" rel="stylesheet">
 
-<script>
-    var availableTags = {{ movies_names|safe }};
-    console.log({{ movies_posters|safe }});
-    console.log(availableTags);
-    
-  $( function() {
-    $("#searchBar").autocomplete({
-		source: function(request, response) {
-			var results = $.ui.autocomplete.filter(availableTags, request.term);
-			response(results.slice(0, 10));
-		}	
-  		});
-    });
 
-
-    $(function() {
-        return $(".carousel").on("slide.bs.carousel", function(ev) {
-          $("img.lazy").lazyload();
-        });
-      });
-      
-</script>
 
 {% endblock %}
 
@@ -34,7 +13,7 @@
 
 
 <div id="background-carousel">
-    <div id="myCarousel" class="carousel slide lazy-load" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide lazy-load" data-interval="10000" data-ride="carousel">
         
         <ol class="carousel-indicators">
         {% for i in range((movies_posters|length)// 3) %}

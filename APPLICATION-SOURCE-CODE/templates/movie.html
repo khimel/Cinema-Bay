@@ -7,18 +7,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Staatliches&display=swap" rel="stylesheet">
 
-<script>
-    var availableTags = {{ movies_names|safe }};
-  $( function() {
-    $("#searchBar").autocomplete({
-		source: function(request, response) {
-			var results = $.ui.autocomplete.filter(availableTags, request.term);
-			response(results.slice(0, 10));
-		}	
-  		});
-	});
-</script>
-
 {% endblock %}
 
 {% block body %}
@@ -89,11 +77,16 @@
 						
 					<div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
 					    <div class="card-body" id="cast">
-							<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+							<div id="carouselExampleControls" class="carousel slide lazy-load" data-interval="7000" data-ride="carousel">
 								<div class="carousel-inner">
 								{% for actor in topcast %}
+									{% if loop.index|string =='1'%}
+										{% set x ='1' %}
+									{% else %}
+										{% set x ='2' %}
+									{% endif %}
 									<div class="carousel-item {{ 'active' if loop.index|string == '1' }}">
-										<img id="actor" class="d-block w-100" src="{{ 'static/blank.png' if actor['image'] == 'None' else actor['image'] }}" alt="blank" style="height: 200px;">
+										<img id="actor" class="d-block w-100{{'lazy' if x == '2'}}"  {{ "src=" if x =='1' else "data-original=" }} "{{ actor['image'] }}" alt="blank" style="height: 200px;">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
 											<h5 class="text-center">Avg Movie Rating: {{ actor["avg"]|string}} /10</h5>
@@ -269,7 +262,7 @@
 
 <h3 class="font-weight-light text-center mt-4 mb-3">More Movies Like This</h3>
 <div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div id="myCarousel" class="carousel slide lazy-load" data-ride="carousel">
 			
 			<ol class="carousel-indicators">
 			{% for i in range((recs|length)// 5 ) %}
@@ -279,13 +272,18 @@
 			
 			<div class="carousel-inner" role="listbox">
 			{% for row in recs|batch(5) %}
+			{% if loop.index|string =='1'%}
+                {% set x ='1' %}
+            {% else %}
+                {% set x ='2' %}
+            {% endif %}
 				<div class="carousel-item item {% if loop.index|string == '1' %} active {% endif %}">
 					<div class="row h-100">
 						{% for movie in row %}
 						<div class="col-md-2 p-0 {% if loop.index|string != '1' %} clearfix d-none d-md-block {% endif %}">
 							<div class="card h-100">
 								<a class="h-100" href="/search?id={{ movie['id'] }}">
-									<img class="card-img h-100 " src="{{movie['poster'] }}"
+									<img class="card-img h-100 {{'lazy' if x == '2'}}"  {{ "src=" if x =='1' else "data-original=" }} "{{ movie['poster'] }}"
 									alt="Card image cap">
 								</a>
 							</div>
