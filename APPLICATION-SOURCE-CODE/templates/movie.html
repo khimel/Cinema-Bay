@@ -241,7 +241,7 @@
 					<h5 class="card-title">GENRE</h5>
 					<p class="card-text">
 						{% for genre in context['genres'] %}
-							<span>{{'|' if loop.index|str != '1' }} {{ genre }}</span>
+							<span>{{'|' if loop.index|string != '1' }} {{ genre }}</span>
 						{% endfor %}
 					</p>
 				</div>
@@ -253,7 +253,7 @@
 				<h5 class="card-title">Providers </h5>
 				<p class="card-text">
 					{% for provider in context['providers'] %}
-						<span>{{'|' if loop.index|str != '1' }} {{ provider }} </span>
+						<span>{{'|' if loop.index|string != '1' }} {{ provider }} </span>
 					{% endfor %}
 				</p>
 			</div>
