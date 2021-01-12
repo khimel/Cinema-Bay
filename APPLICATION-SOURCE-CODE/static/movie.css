@@ -1,191 +1,231 @@
-body, .my-container{
-    margin: 0;
-    padding: 0;
-    max-width: none;
+/*body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+   }*/
+   
+  /* h1, h2, h3, h4, h5, h6 {
+    font-family: 'Abril Fatface', serif;
+   }*/
+
+   
+   * {
+    box-sizing: border-box;
     }
-
-* {
-box-sizing: border-box;
-}
-
-body {
-background-color: lightgrey;
-}
-
-/* Top nav bar -- mhamad */
-
-#topnav{
-  background-color: black;
-}
-
-#topnav-brand{
-  font-family: 'Limelight', cursive;
-  font-size: 1.4rem;
-  color: white;
-}
-
-#myBtn {
-font-size: 18px;
-padding: 10px;
-border: none;
-background-color: transparent !important;
-color: #fff;
-cursor: pointer;
-}
-
-#myBtn:hover {
-background: #ddd;
-color: black;
-}
-  
-.row{
- justify-content: space-between;
-}
-.col-sm-3, .movie-container{
-padding :5px;
-}
-.movie-container{
-background: transparent;
-border: solid #BDBDBD 0; 
-box-shadow:  20px 20px 47px #52595f, 
-           -20px -20px 47px #707981;
-margin: 50px 5%;
-width: 90%;
-background-color: grey;
-padding: 0;
-color: white;
-}
-.row-movie{
-margin-top: 0px;
-padding-top: 50px;
-}
-
-.col-sm-3 p{
-padding-right: 15px;
-padding-left: 15px;
-}
-.movie-title{
-color: white;
-margin: 20px 2% !important;
-font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif; 
-/*font-size: 72px;*/
-}
-
-.transparent {
-      height: 100%;
-      background:rgba(255,255,255,0.4);
-}
-
-
-.bottom-nav-bar{
-  background-color: black;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  display: block;
-}
-
-.movie-RSD {
-  color: white;
-  border-left: white solid;
-  justify-content: center;
-}
-.movie-RSD a{
-color: white;
-text-align: center;
-text-decoration: none;
-font-size: 17px;
-
-}
-.movie-RSD {
-  align-items: center;
-  text-align: left;
-  align-content: left;
-  padding-top: 50px;
-  padding-bottom: 50px;
-
-}
-.movie-RSD h5{
-   font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif; 
-}
-
-#myVideo iframe{
-  top:0;
-  left: 0;
-  width: 100%;
-
-}
-
-.card{
-  border-radius: 0px;
-  background-color: transparent;
-  border-color: white;
-  color:white;
-  border-top: 0px;
-  border-right: 0px;
-  border-left: 0px;
-}
-#accordion .card button, #accordion .card button:active{
-   text-decoration: none;
-}
-#accordion .card-body{
-  padding-right: 0px;
-  padding-left: 0px;
-}
-#BoxOffice{
-  font: 12px Arial;
-  width: 100%;
-}
-#BoxOffice th{
-  font-style: bold;
-  border-bottom: 1px;
-  width: 60%;
-}
-#Awards{
-  font: 12px Arial;
-  width: 100%;
-}
-#Awards th{
-   font-style: bold;
-  border-bottom: 1px;
-  width: 60%;
-}
-#storyline .card-body{
-  padding: 0;
-}
-
-#mid-navbar button{
-  border-radius: 0;
-  background-color: black;
-  border-style: none;
-  text-decoration: none;
-}
-
-
-#cast p{
-  font-size: 10px !important;
-  }
-
-  #cast .col-sm-4{
-    padding: 2px; 
-  }
-/*<---------------------imageGalery------------>*/
-
-
-.carousel,
-.carousel-inner {
-	width:100%;
-	height:100%;
-	z-index:0;
-	overflow:hidden;
-}
-.item{
-	width:100%;
-	height:100%;
-	background-position:center center;
-	background-size:cover;
-	z-index:0;
-}
-#carousel-indicator{
-	height: 30px;
-}
+    
+    body {
+    background: linear-gradient(235deg,#a200ff,#060c21,#00bcd4);
+    color: white;
+    }
+    
+    /* Top nav bar -- mhamad */
+    
+    #topnav{
+      background-color: black;
+    }
+    i{
+      margin-right: 10px;
+    }
+    #topnav-brand{
+      font-family: 'Limelight', cursive;
+      font-size: 1.4rem;
+      color: white;
+    }
+ 
+    /*
+    button, button:active{
+       border-width: 2px !important;
+     border-image:  linear-gradient(
+          to bottom, 
+          rgba(256, 256, 256, 0.5), 
+          rgba(0, 0, 0, 0)
+        ) 1 100% !important;
+      border-style: solid;
+      color: white;
+    }
+    button:hover{
+      background: -webkit-linear-gradient(235deg,#a200ff,#060c21,#00bcd4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #myBtn {
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background-color: transparent !important;
+    color: #fff;
+    cursor: pointer;
+    }
+    
+    #myBtn:hover {
+    background: #ddd;
+    color: black;
+    }
+    */
+      
+    .row{
+     justify-content: space-between;
+    }
+    .col-sm-3, .movie-container{
+    padding :5px;
+    }
+    .movie-container{
+    background: rgb(255,255,255,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border: solid #BDBDBD 0; 
+    margin: 50px 5%;
+    width: 90%;
+    padding: 0;
+    color: white;
+    }
+    div.movie-container > * { 
+                z-index: 2;
+            } 
+    .movie-container:before, .movie-container:after{
+      content: '';
+      position: relative;
+      top:-20px;
+      left:-20px;
+      right:-20px;
+      bottom:-20px;
+      background: linear-gradient(235deg,#a200ff,#060c21,#00bcd4);
+      filter: blur(2px);
+    }
+    .row-movie{
+    margin-top: 0px;
+    padding-top: 50px;
+    }
+    
+    .col-sm-3 p{
+    padding-right: 15px;
+    padding-left: 15px;
+    }
+    .movie-title{
+    color: white;
+    /*font-size: 72px;*/
+    }
+    
+    .transparent {
+          height: 100%;
+          background:rgba(255,255,255,0.4);
+    }
+    
+    
+    .bottom-nav-bar{
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      display: block;
+    }
+    
+    .movie-RSD {
+      color: white;
+      border-left: white solid;
+      justify-content: center;
+    }
+    .movie-RSD a{
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    
+    }
+    .movie-RSD {
+      align-items: center;
+      text-align: left;
+      align-content: left;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    
+    }
+    .movie-RSD h5{
+       /*font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif; */
+    }
+    
+    #myVideo iframe{
+      top:0;
+      left: 0;
+      width: 100%;
+    
+    }
+    
+    .card{
+      border-radius: 0px;
+      background-color: transparent;
+      border-color: white;
+      color:white;
+      border-top: 0px;
+      border-right: 0px;
+      border-left: 0px;
+    }
+    #accordion .card button, #accordion .card button:active{
+       text-decoration: none;
+    }
+    #accordion .card-body{
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    #BoxOffice{
+      font: 12px Arial;
+      width: 100%;
+    }
+    #BoxOffice th{
+      font-style: bold;
+      border-bottom: 1px;
+      width: 60%;
+    }
+    #Awards{
+      font: 12px Arial;
+      width: 100%;
+    }
+    #Awards th{
+       font-style: bold;
+      border-bottom: 1px;
+      width: 60%;
+    }
+    #storyline .card-body{
+      padding: 0;
+    }
+    
+    #mid-navbar button{
+      border-radius: 2px;
+      background-color: transparent;
+      border-color: linear-gradient(235deg,#a200ff,#060c21,#00bcd4) 2px;
+      text-decoration: none;
+    }
+    
+    
+    #cast p{
+      font-size: 10px !important;
+      }
+    
+      #cast .col-sm-4{
+        padding: 2px; 
+      }
+    /*<---------------------imageGalery------------>*/
+    
+    
+    .carousel,
+    .carousel-inner {
+        width:100%;
+        height:100%;
+        z-index:0;
+        overflow:hidden;
+    }
+    .item{
+        width:100%;
+        height:100%;
+        background-position:center center;
+        background-size:cover;
+        z-index:0;
+    }
+    #carousel-indicator{
+        height: 30px;
+    }
+    
+    .btn-link{
+      color:inherit !important;
+    }
+    
+    
+    

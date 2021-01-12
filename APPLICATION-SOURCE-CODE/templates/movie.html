@@ -37,7 +37,8 @@
 <!--------------------------------------------------------->
 
 <div class="container m-0 p-0 mw-100">
-	<div class="row movie-container">
+	
+	<div class="row movie-container p-4">
 		<div class="col-md-3  no-gutters  order-second order-sm-first">
 			<div id="accordion" class="col-12">
 				<div class="card" id="ac-card1">
@@ -102,8 +103,8 @@
 							<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
 								{% for actor in topcast %}
-									<div class="carousel-item {{ 'active' if loop.index|string == "1" }}">
-										<img class="d-block w-100" src="{{ actor["img"] }}" alt="First slide" style="height: 200px;">
+									<div class="carousel-item {{ 'active' if loop.index|string == '1' }}">
+										<img class="d-block w-100" src="{{ actor['img'] }}" alt="First slide" style="height: 200px;">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
 											<h5 class="text-center">Avg Movie Rating: {{ actor["avg_rating"]}}/10</h5>
@@ -125,7 +126,7 @@
 				</div>
 			</div>
 			<div class="card no-gutters" id="movieTrailer">
-				<iframe  src="{{ context.Trailer }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<iframe  src="{{ context['trailer'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
 		</div>
 
@@ -134,38 +135,45 @@
 			<div class="col">
 			</div>
 			<div class ="col row-movie">
-				<div class="col-12">
-					<h2 class="movie-title" > {{context.Title}} </h2> <i class="fa fa-star" style="font-size:24px;"></i>{{context.Raiting}}<sub>/10</sub> </span>
-				</div>
+				
 					
-				<div class="col movie-synopsis">
-				<p> {{context.Synopsis}}</p>
-				 
-				 
-  				<div class="card" id="mid-navbar">
+					<div class="row no-gutters">
+				<div class="col-12">
+					<h2 class="movie-title" > {{ context['title'] }} </h2> <i class="fa fa-star" style="font-size:24px;"></i>{{ context['raiting'] }}<sub>/10</sub>
+					<hr> 
+				</div>
+					<div class="col-12">
+						<img class="img-fluid float-right col-5" src="{{ context['image'] }}">
+					<p> {{ context['summary'] }} </p>	
+
+				</div>	
+				
+				
+				 </div>
+  				<div class="card border-0" id="mid-navbar">
 				  <div class="card-header">
-				    <ul class="nav nav-tabs ">
-				      <li class="nav-item ">
-				      <button class="btn btn-link  collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline">Storyline</button>
+				    <ul class="nav nav-tabs border-0 d-flex justify-content-between">
+				      <li class="nav-item">
+				      <button class="btn btn-link  collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h5>Storyline</h5></button>
 				      </li>
 				      <li class="nav-item">
-				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2">Academy Awards, USA</button>
+				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h5>Academy Awards</h5></button>
 				      </li>
 				      <li class="nav-item">
-				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3">tab3</button>
+				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3"><h5>tab3</h5></button>
 				      </li>
 				    </ul>
 				  </div>
-				  <div class="card-body " >
+				  <div class="card-body" >
 				  	<div class="collapse show" id="storyline" data-parent="#mid-navbar">
-				  	<div class="card">
+				  	<div class="card border-0">
 				  		<div class="card-body">
-				  			<p  class="card-text ">{{context.StoryLine}}</p>
+				  			<p  class="card-text ">{{ context['summary'] }}</p>
 				  		</div>
 				  	</div>
 				    </div>
 				    <div class="collapse" id="tab2" data-parent="#mid-navbar">
-				    <div class="card">
+				    <div class="card border-0">
 				    	<div class="card-body">
 				    		<h5>winner</h5>
 				    		<ul>
@@ -187,7 +195,7 @@
 				    </div>
 				    </div>
 				    <div class="collapse" id="tab3" data-parent="#mid-navbar">
-				   <div class="card" >
+				   <div class="card border-0" >
 				   	 <div class="card-body">
 				   	 	 <p  class="card-text collapse"></p>
 				   	 </div>
@@ -197,7 +205,7 @@
 				    
 				</div>
 
-				 </div>
+				 
 				</div>
 				<div class="col-12 no-gutters">
 					
@@ -210,7 +218,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">PREMIERE</h5>
-					<p class="card-text">{{context.Premiere}}</p>
+					<p class="card-text">{{ context['year'] }}</p>
 				</div>
 			</div>
 
@@ -219,7 +227,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title" >DIRECTOR</h5>
-					<p class="card-text">{{context.Director}}</p>
+					<p class="card-text">{{ context['director'] }}</p>
 				</div>
 			</div>
 
@@ -228,7 +236,12 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">Filming Locations</h5>
-					<p class="card-text">{{context.FL}}</p>
+					
+					<p class="card-text">
+						{% for location in context['locations'] %}
+							<span> {{ location }} | </span>
+						{% endfor %}
+					</p>
 				</div>
 			</div>
 
@@ -237,14 +250,26 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">GENRE</h5>
-					<p class="card-text">{{context.Genres}}</p>
+					<p class="card-text">
+						{% for genre in context['genres'] %}
+							<span>{{ genre }} | </span>
+						{% endfor %}
+					</p>
 				</div>
 			</div>
 
 		<!--**********************************-->
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Providers </h5>
+				<p class="card-text">
+					{% for provider in context['providers'] %}
+						<span>{{ provider }} | </span>
+					{% endfor %}
+				</p>
+			</div>
+		</div>
 			
-			
-
 		<!--**********************************-->
 	
 		</div>
@@ -258,20 +283,20 @@
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			
 			<ol class="carousel-indicators">
-			{% for i in range((movies|length)// 5 +1) %}
+			{% for i in range((movies_posters|length)// 5 +1) %}
 			<li id="carousel-indicator" data-target="#myCarousel" data-slide-to="{{i}}" class="{{ 'active' if loop.index|string == "1" }}"></li>
 			{% endfor %}
 			</ol>
 			
 			<div class="carousel-inner" role="listbox">
-			{% for row in movies|batch(5) %}
-				<div class="carousel-item item {% if loop.index|string == "1" %} active {% endif %}">
+			{% for row in movies_posters|batch(5) %}
+				<div class="carousel-item item {% if loop.index|string == '1' %} active {% endif %}">
 					<div class="row h-100">
 						{% for movie in row %}
-						<div class="col-md-2 p-0 {% if loop.index|string != "1" %} clearfix d-none d-md-block {% endif %}">
+						<div class="col-md-2 p-0 {% if loop.index|string != '1' %} clearfix d-none d-md-block {% endif %}">
 							<div class="card h-100">
-								<a class="h-100" href="/search?query={{ movie["name"] }}">
-									<img class="card-img h-100 " src="{{movie["poster"] }}"
+								<a class="h-100" href="/search?query={{ movie['title'] }}">
+									<img class="card-img h-100 " src="{{movie['poster'] }}"
 									alt="Card image cap">
 								</a>
 							</div>

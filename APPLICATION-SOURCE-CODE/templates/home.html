@@ -9,6 +9,7 @@
     var availableTags = {{ movies_names|safe }};
     console.log({{ movies_posters|safe }});
     console.log(availableTags);
+    
   $( function() {
     $("#searchBar").autocomplete({
 		source: function(request, response) {
@@ -16,7 +17,7 @@
 			response(results.slice(0, 10));
 		}	
   		});
-	});
+    });
 </script>
 
 {% endblock %}
@@ -28,27 +29,26 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         
         <ol class="carousel-indicators">
-        {% for i in range((movies|length)// 3) %}
+        {% for i in range((movies_posters|length)// 3) %}
         <li id="carousel-indicator" data-target="#myCarousel" data-slide-to="{{i}}" class="{{ 'active' if loop.index|string == "1" }}"></li>
         {% endfor %}
         </ol>
         
 
         <div class="carousel-inner" role="listbox">
-        {% for row in movies|batch(3) %}
+        {% for row in movies_posters|batch(3) %}
             <div class="carousel-item item {% if loop.index|string == "1" %} active {% endif %}">
                 <div class="row h-100">
                     {% for movie in row %}
                     <div class="col-md-4 p-0 {% if loop.index|string != "1" %} clearfix d-none d-md-block {% endif %}">
                         <div class="card h-100">
-                            <a class="h-100" href="/search?query={{ movie["name"] }}">
-                                <img class="card-img h-100 " src="{{movie["poster"] }}"
+                            <a class="h-100" href="/search?query={{ movie['title'] }}">
+                                <img class="card-img h-100 " src="{{ movie['poster'] }}"
                                 alt="Card image cap">
                             </a>
                         </div>
                     </div>
                     {% endfor %}
-
                 </div>
             </div>
         {% endfor %}
