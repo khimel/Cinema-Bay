@@ -45,31 +45,16 @@
 					<div class="card-header" id="headingOne">
 					    <h5 class="mb-0">
 					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					          Box Office
+					          Cool feature
 					        </button>
 					    </h5>
 					</div>
 
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 					    <div class="card-body">
-					        <table class="card-text" id="BoxOffice">
-					        	<tr>
-					        		<th>Budget:</th>
-					        		<td>$25,000,000 (estimated)</td>
-					        	</tr>
-					        	<tr>
-					        		<th>Opening Weekend USA:</th>
-					        		<td>$727,327, 25 September 1994</td>
-					        	</tr>
-					        	<tr>
-					        		<th>Gross USA:</th>
-					        		<td>$28,699,976</td>
-					        	</tr>
-					        	<tr>
-					        		<th>Cumulative Worldwide Gross:</th>
-					        		<td>$28,815,291</td>
-					        	</tr>
-					        </table>
+					        <p class="card-text">
+								Empty for now
+							</p>
 					    </div>
 					</div>
 				</div>
@@ -77,13 +62,17 @@
 					<div class="card-header" id="headingTwo">
 					    <h5 class="mb-0">
 					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					          Academy Awards, USA
+					          Famous Awards
 					        </button>
 					    </h5>
 					</div>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					    <div class="card-body">
-					       
+							<p class="card-text">
+								{% for award in context['awards'] %}
+									<span>{{'|' if loop.index|str != '1' }} {{ award }} </span>
+								{% endfor %}
+							</p>
 					     </div>
 					</div>
 				</div>
@@ -104,10 +93,10 @@
 								<div class="carousel-inner">
 								{% for actor in topcast %}
 									<div class="carousel-item {{ 'active' if loop.index|string == '1' }}">
-										<img class="d-block w-100" src="{{ actor['img'] }}" alt="First slide" style="height: 200px;">
+										<img class="d-block w-100" src="{{ actor['image'] }}" alt="First slide" style="height: 200px;">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
-											<h5 class="text-center">Avg Movie Rating: {{ actor["avg_rating"]}}/10</h5>
+											<h5 class="text-center">Avg Movie Rating: {{ actor["avg"]|string}} /10</h5>
 										</div>
 									</div>
 								{% endfor %}
@@ -139,7 +128,7 @@
 					
 					<div class="row no-gutters">
 				<div class="col-12">
-					<h2 class="movie-title" > {{ context['title'] }} </h2> <i class="fa fa-star" style="font-size:24px;"></i>{{ context['raiting'] }}<sub>/10</sub>
+					<h2 class="movie-title" > {{ context['title'] }} </h2> <i class="fa fa-star" style="font-size:24px;"></i>{{ context['raiting']|int }}<sub>/10</sub>
 					<hr> 
 				</div>
 					<div class="col-12">
@@ -239,7 +228,7 @@
 					
 					<p class="card-text">
 						{% for location in context['locations'] %}
-							<span> {{ location }} | </span>
+							<span>{{'|' if loop.index|string != '1' }} {{ location }}</span>
 						{% endfor %}
 					</p>
 				</div>
@@ -252,7 +241,7 @@
 					<h5 class="card-title">GENRE</h5>
 					<p class="card-text">
 						{% for genre in context['genres'] %}
-							<span>{{ genre }} | </span>
+							<span>{{'|' if loop.index|str != '1' }} {{ genre }}</span>
 						{% endfor %}
 					</p>
 				</div>
@@ -264,7 +253,7 @@
 				<h5 class="card-title">Providers </h5>
 				<p class="card-text">
 					{% for provider in context['providers'] %}
-						<span>{{ provider }} | </span>
+						<span>{{'|' if loop.index|str != '1' }} {{ provider }} </span>
 					{% endfor %}
 				</p>
 			</div>
@@ -283,19 +272,19 @@
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			
 			<ol class="carousel-indicators">
-			{% for i in range((movies_posters|length)// 5 +1) %}
+			{% for i in range((recs|length)// 5 ) %}
 			<li id="carousel-indicator" data-target="#myCarousel" data-slide-to="{{i}}" class="{{ 'active' if loop.index|string == "1" }}"></li>
 			{% endfor %}
 			</ol>
 			
 			<div class="carousel-inner" role="listbox">
-			{% for row in movies_posters|batch(5) %}
+			{% for row in recs|batch(5) %}
 				<div class="carousel-item item {% if loop.index|string == '1' %} active {% endif %}">
 					<div class="row h-100">
 						{% for movie in row %}
 						<div class="col-md-2 p-0 {% if loop.index|string != '1' %} clearfix d-none d-md-block {% endif %}">
 							<div class="card h-100">
-								<a class="h-100" href="/search?query={{ movie['title'] }}">
+								<a class="h-100" href="/search?id={{ movie['id'] }}">
 									<img class="card-img h-100 " src="{{movie['poster'] }}"
 									alt="Card image cap">
 								</a>
