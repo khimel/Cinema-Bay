@@ -227,5 +227,11 @@
       color:inherit !important;
     }
     
-    
-    
+
+  #actor:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-image: url(blank.png);

@@ -198,7 +198,7 @@ def more_like_this(f_id, delta_year, delta_rating):
 
     close_connection(cnx)
 
-    return res
+    return res[:30]
 
 def get_topcast(f_id):
 

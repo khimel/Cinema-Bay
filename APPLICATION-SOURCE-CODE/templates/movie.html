@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Staatliches&display=swap" rel="stylesheet">
 
 <script>
+	var top = {{topcast|safe}};
+	console.log(top);
     var availableTags = {{ movies_names|safe }};
   $( function() {
     $("#searchBar").autocomplete({
@@ -93,7 +95,7 @@
 								<div class="carousel-inner">
 								{% for actor in topcast %}
 									<div class="carousel-item {{ 'active' if loop.index|string == '1' }}">
-										<img class="d-block w-100" src="{{ actor['image'] }}" alt="First slide" style="height: 200px;">
+										<img id="actor" class="d-block w-100" src="{{ actor['image'] }}" alt="blank" style="height: 200px;">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
 											<h5 class="text-center">Avg Movie Rating: {{ actor["avg"]|string}} /10</h5>
