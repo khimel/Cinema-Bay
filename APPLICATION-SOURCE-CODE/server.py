@@ -161,7 +161,7 @@ def get_details_by_id(film_id):
     close_connection(cnx)
 
     ##KHIMEL COMPRESSION
-    res['image'] = res['image'].replace("_V1_", "_SL100_")
+    res['image'] = res['image'].replace("_V1_", "_SL300_")
 
     res['awards'] = get_awards(film_id)
     res['genres'] = get_genres(film_id)
@@ -198,7 +198,7 @@ def more_like_this(f_id, delta_year, delta_rating):
     rows = cur.fetchall()
 
     for row in rows:
-        row_map = {'id':row[0], 'poster':row[1]}
+        row_map = {'id':row[0], 'poster':row[1].replace("_V1_", "_SL300_")}
         res.append(row_map)
 
     close_connection(cnx)
@@ -233,7 +233,7 @@ def get_topcast(f_id):
         for i in range(0, len(keys)):
             if keys[i] == 'image':
                 if row[i] is not None:
-                    row_map[keys[i]] = row[i].replace("_V1_", "_SL150_")
+                    row_map[keys[i]] = row[i].replace("_V1_", "_SL300_")
             else:
                 row_map[keys[i]] = row[i]
 
