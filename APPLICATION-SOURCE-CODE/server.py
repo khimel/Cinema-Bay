@@ -198,7 +198,7 @@ def more_like_this(f_id, delta_year, delta_rating):
     rows = cur.fetchall()
 
     for row in rows:
-        row_map = {'id':row[0], 'poster':row[1].replace("_V1_", "_SL300_")}
+        row_map = {'id':row[0], 'poster':row[1].replace("_V1_", "_SL200_")}
         res.append(row_map)
 
     close_connection(cnx)
