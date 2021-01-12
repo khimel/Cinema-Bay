@@ -160,6 +160,9 @@ def get_details_by_id(film_id):
 
     close_connection(cnx)
 
+    ##KHIMEL COMPRESSION
+    res['image'] = res['image'].replace("_V1_", "_SL966_")
+
     res['awards'] = get_awards(film_id)
     res['genres'] = get_genres(film_id)
     res['locations'] = get_locations(film_id)
