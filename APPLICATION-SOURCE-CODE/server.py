@@ -232,7 +232,8 @@ def get_topcast(f_id):
 
         for i in range(0, len(keys)):
             if keys[i] == 'image':
-                row_map[keys[i]] = row[i].replace("_V1_", "_SL150_")
+                if row[i] is not None:
+                    row_map[keys[i]] = row[i].replace("_V1_", "_SL150_")
             else:
                 row_map[keys[i]] = row[i]
 
