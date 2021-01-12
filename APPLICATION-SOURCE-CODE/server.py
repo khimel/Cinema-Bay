@@ -66,6 +66,7 @@ def get_details_by_name(name):
     
     cnx = connect_to_mysql_server()
     cur = cnx.cursor()
+    name = name.replace("'", "\"")
     cur.execute("SELECT film_id FROM FILM WHERE title = '%s'" % name)
 
     rows = cur.fetchall()
