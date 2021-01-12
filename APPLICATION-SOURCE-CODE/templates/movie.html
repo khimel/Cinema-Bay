@@ -86,7 +86,7 @@
 										{% set x ='2' %}
 									{% endif %}
 									<div class="carousel-item {{ 'active' if loop.index|string == '1' }}">
-										<img id="actor" class="d-block w-100{{'lazy' if x == '2'}}"  {{ "src=" if x =='1' else "data-original=" }} "{{ actor['image'] }}" alt="blank" style="height: 200px;">
+										<img id="actor" class="d-block w-100 {{'lazy' if x == '2'}}"  {{ "src=" if x =='1' else "data-original=" }} "{{ actor['image'] }}" alt="blank" style="height: 200px;">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
 											<h5 class="text-center">Avg Movie Rating: {{ actor["avg"]|string}} /10</h5>
