@@ -161,7 +161,7 @@ def get_details_by_id(film_id):
     close_connection(cnx)
 
     ##KHIMEL COMPRESSION
-    res['image'] = res['image'].replace("_V1_", "_SL500_")
+    res['image'] = res['image'].replace("_V1_", "_SL100_")
 
     res['awards'] = get_awards(film_id)
     res['genres'] = get_genres(film_id)
@@ -231,7 +231,10 @@ def get_topcast(f_id):
         keys = ['id', 'name', 'birthdate', 'image', 'avg']
 
         for i in range(0, len(keys)):
-            row_map[keys[i]] = row[i]
+            if keys[i] == 'image':
+                row_map[keys[i]] = row[i].replace("_V1_", "_SL150_")
+            else:
+                row_map[keys[i]] = row[i]
 
         res.append(row_map)
 
