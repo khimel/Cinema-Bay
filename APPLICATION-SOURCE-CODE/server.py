@@ -11,7 +11,7 @@ def connect_to_mysql_server():
     cnx = mysql.connector.connect(user='DbMysql07',
                                   password='BestSqlProject101',
                                   host='mysqlsrv1.cs.tau.ac.il',
-                                  port=3305,
+                                  port=3306,
                                   database='DbMysql07')
     if not cnx.is_connected():
         print("Couldn't connect!")
@@ -259,8 +259,8 @@ def search_return_html():
 
         context = get_details_by_name(query)
 
-    recs = more_like_this(context['id'], 5, 1)
-    topcast = get_topcast(context['id'])
+    recs = more_like_this(context['film_id'], 5, 1)
+    topcast = get_topcast(context['film_id'])
     return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast)
 
 
