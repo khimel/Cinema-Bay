@@ -59,7 +59,7 @@ def get_movie_posters():
     close_connection(cnx)
     random.shuffle(res)
 
-    return res[0:30]
+    return res[0:15]
 
 # details =  {"film_id":"", "title":"", "year":"", "image":"", "summary":"","trailer":"", "raiting":"", "director":"", "awards":{"":int, "":int}, "genre":[], "locations":[], "providers":[size of max 3], ("topcast":[{"id":"", "name":"", "img":"", "avg_movie_rating":""}])}
 def get_details_by_name(name):
@@ -198,7 +198,7 @@ def more_like_this(f_id, delta_year, delta_rating):
 
     close_connection(cnx)
 
-    return res[:15]
+    return res[:10]
 
 def get_topcast(f_id):
 
