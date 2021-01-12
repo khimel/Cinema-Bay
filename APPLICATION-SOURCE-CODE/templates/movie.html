@@ -93,7 +93,7 @@
 								<div class="carousel-inner">
 								{% for actor in topcast %}
 									<div class="carousel-item {{ 'active' if loop.index|string == '1' }}">
-										<img id="actor" class="d-block w-100" src="{{ actor['image'] }}" alt="blank" style="height: 200px;">
+										<img id="actor" class="d-block w-100" src="{{ 'static/blank.png' if actor['image'] == 'None' else actor['image'] }}" alt="blank" style="height: 200px;">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
 											<h5 class="text-center">Avg Movie Rating: {{ actor["avg"]|string}} /10</h5>
