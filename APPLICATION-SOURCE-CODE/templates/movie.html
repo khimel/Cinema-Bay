@@ -58,7 +58,7 @@
 					    <div class="card-body">
 							<p class="card-text">
 								{% for award in context['awards'] %}
-									<span>{{'|' if loop.index|string != '1' }} {{ award }} </span>
+									<p>{{'|' if loop.index|string != '1' }} {{ award['count'] }} {{award['award'] }}s </p></span>
 								{% endfor %}
 							</p>
 					     </div>
@@ -89,7 +89,7 @@
 										<img id="actor" class="d-block w-100 {{'lazy' if x == '2'}}"  {{ "src=" if x =='1' else "data-original=" }} "{{ actor['image'] }}" alt="blank" style="height: 200px;">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
-											<h5 class="text-center">Avg Movie Rating: {{ actor["avg"]|string}} /10</h5>
+											<h5 class="text-center">Average Movie Rating: {{ (actor["avg"]|string)[:3]}} /10</h5>
 										</div>
 									</div>
 								{% endfor %}
@@ -107,8 +107,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="card no-gutters" id="movieTrailer">
-				<iframe  src="{{ context['trailer'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<div class="card no-gutters h-100" id="movieTrailer">
+				<iframe  src="{{ context['trailer'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="height: 300px;" allowfullscreen></iframe>
 			</div>
 		</div>
 
@@ -217,7 +217,7 @@
 			
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">Filming Locations</h5>
+					<h5 class="card-title">FILMING LOCATIONS</h5>
 					
 					<p class="card-text">
 						{% for location in context['locations'] %}
@@ -243,7 +243,7 @@
 		<!--**********************************-->
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">Providers </h5>
+				<h5 class="card-title">STREAM PROVIDERS</h5>
 				<p class="card-text">
 					{% for provider in context['providers'] %}
 						<span>{{'|' if loop.index|string != '1' }} {{ provider }} </span>

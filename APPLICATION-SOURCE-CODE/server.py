@@ -66,7 +66,7 @@ def get_details_by_name(name):
     
     cnx = connect_to_mysql_server()
     cur = cnx.cursor()
-    name = name.replace("'", "\"")
+    name = name.replace("'", "''")
     cur.execute("SELECT film_id FROM FILM WHERE title = '%s'" % name)
 
     rows = cur.fetchall()
@@ -77,15 +77,16 @@ def get_details_by_name(name):
     return get_details_by_id(film_id)
 
 def get_awards(film_id):
-    res = {}
+    res = []
 
     cnx = connect_to_mysql_server()
     cur = cnx.cursor()
     cur.execute("SELECT award, count FROM FILM_AWARD WHERE film_id = '%s'" % film_id)
     rows = cur.fetchall()
 
+    awards = ["Oscar", "Golden Globe", "BAFTA Film award"]
     for row in rows:
-        res[row[0]] = row[1]
+        res.append({'award':row[0], 'count':row[1]})
 
     close_connection(cnx)
 
