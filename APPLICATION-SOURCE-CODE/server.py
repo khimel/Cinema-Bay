@@ -212,15 +212,16 @@ def get_topcast(f_id):
     cnx = connect_to_mysql_server()
     cur = cnx.cursor()
 
-    query = (   "SELECT ACTOR.actor_id, ACTOR.actor_name, ACTOR.birthdate, ACTOR.image, r_avg FROM "
-                "ACTOR, "
-                    "(SELECT ACTOR.actor_id AS a_id, AVG(FILM.rating) as r_avg "
-                    "FROM ACTOR, FILM_STAR, FILM "
-                    "WHERE FILM.film_id = " + "'%s'" % f_id + " "
-                    "AND FILM_STAR.film_id = " + "'%s'" % f_id + " "
-                    "AND FILM_STAR.actor_id = ACTOR.actor_id "
-                    "GROUP BY ACTOR.actor_id) SUB_QUERY "
-                "WHERE ACTOR.actor_id = a_id;" )
+    query = ("SELECT ACTOR.actor_id, ACTOR.actor_name, ACTOR.birthdate, ACTOR.image, AVG(FILM.rating) "
+             "FROM ACTOR, FILM_STAR, FILM "                    
+             "WHERE ACTOR.actor_id IN "
+             "(SELECT actor_id "
+             "FROM FILM_STAR "
+             "WHERE FILM_STAR.film_id = " + "'%s'" % f_id +") "
+             "AND FILM_STAR.film_id = FILM.film_id "
+             "AND FILM_STAR.actor_id = ACTOR.actor_id "
+             "GROUP BY ACTOR.actor_id;"
+             )
 
     cur.execute(query)
     rows = cur.fetchall()
@@ -241,7 +242,11 @@ def get_topcast(f_id):
 
     close_connection(cnx)
 
-    return res[:5]
+    if len(res) >= 10:
+        res = res[:10]
+    return res
+
+
 
 movies_names = get_movie_names() #global list for auto complete
 
