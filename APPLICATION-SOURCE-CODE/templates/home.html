@@ -45,7 +45,7 @@
 
         <div class="carousel-inner" role="listbox">
         {% for row in movies_posters|batch(3) %}
-            {{ set x = '1' if loop.index|string =='1' else set x ='2'  }}
+            {% set x = '1' if loop.index|string =='1' else set x ='2'  %}{% endblock %}
             <div class="carousel-item item {% if loop.index|string == '1' %} active {% endif %}">
                 <div class="row h-100">
                     {% for movie in row %}
