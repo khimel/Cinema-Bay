@@ -18,6 +18,14 @@
 		}	
   		});
     });
+
+
+    $(function() {
+        return $(".carousel").on("slide.bs.carousel", function(ev) {
+          $("img.lazy").lazyload();
+        });
+      });
+      
 </script>
 
 {% endblock %}
@@ -26,7 +34,7 @@
 
 
 <div id="background-carousel">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide lazy-load" data-ride="carousel">
         
         <ol class="carousel-indicators">
         {% for i in range((movies_posters|length)// 3) %}
@@ -37,13 +45,14 @@
 
         <div class="carousel-inner" role="listbox">
         {% for row in movies_posters|batch(3) %}
-            <div class="carousel-item item {% if loop.index|string == "1" %} active {% endif %}">
+            {% set x = '1' if loop.index|string =='1' else set x ='2'  %}
+            <div class="carousel-item item {% if loop.index|string == '1' %} active {% endif %}">
                 <div class="row h-100">
                     {% for movie in row %}
-                    <div class="col-md-4 p-0 {% if loop.index|string != "1" %} clearfix d-none d-md-block {% endif %}">
+                    <div class="col-md-4 p-0 {% if loop.index|string != '1' %} clearfix d-none d-md-block {% endif %}">
                         <div class="card h-100">
                             <a class="h-100" href="/search?query={{ movie['title'] }}">
-                                <img class="card-img h-100 " src="{{ movie['poster'] }}"
+                                <img class="card-img h-100 {{'lazy' if x == '2'}}"  {{ "src=\" movie[\"poster\"]\"" if x=='1' else "data-original=\"movie[\"poster\"]\""}}
                                 alt="Card image cap">
                             </a>
                         </div>
