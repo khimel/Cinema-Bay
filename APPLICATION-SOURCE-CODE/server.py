@@ -118,7 +118,7 @@ def get_locations(film_id):
 
     close_connection(cnx)
 
-    return res
+    return res[:4]
 
 
 def get_providers(film_id):
