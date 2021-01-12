@@ -70,7 +70,7 @@
 					    <div class="card-body">
 							<p class="card-text">
 								{% for award in context['awards'] %}
-									<span>{{'|' if loop.index|str != '1' }} {{ award }} </span>
+									<span>{{'|' if loop.index|string != '1' }} {{ award }} </span>
 								{% endfor %}
 							</p>
 					     </div>
