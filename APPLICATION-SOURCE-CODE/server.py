@@ -24,25 +24,35 @@ def close_connection(cnx):
     cnx.close()
 
 
-def get_statistics():
-    
+def get_born_today():
     # this func should return a list of strings, with info about the Database
-    res = ["Number of movies in the DB", 
-           "Number of movies with raiting above 8.5", #(aggregation on raiting with count)
+    res = [
            "Number of alllll awards in the DB"
+           "# ", #(this will Join awards with genre)#
+           "Number of award in each genre",
+           ###### randomize genre #####
     
-           "number of awards in Drama ", #(this will Join awards with genre)#
-           "The same but Action",
-           "The same but horror",
-    
-           "Youngest Actor in the DB with his birthday" #( aggregation on actors)
-           "Oldest Actor in the DB with his birthday"
     ]
 
     ####these string will be displayed in the homepage under the website name as a text slideshow
 
     return res
 
+
+def get_ranks(f_id):
+    # rank in the db
+    # rank in each genre it has
+    # [{'action':rank }, {'drama': rank}]
+    pass
+
+
+def get_director_cast(director):
+    pass
+    #list with actors names
+
+def get_actor_spec(actor_id):
+    pass
+    # return a string with the genre he sepcialize in
 
 
 #global list with movie names for auto complete
