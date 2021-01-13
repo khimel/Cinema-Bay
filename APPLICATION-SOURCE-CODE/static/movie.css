@@ -228,6 +228,10 @@
       background-color: white;
 
     }
+    li > a{
+      color:blue;
+      background-color: white;
+    }
     
 
   #actor:before {
