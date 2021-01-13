@@ -90,14 +90,14 @@
     var stats = {{ statistics|safe }};
     
     var i = 0;
-    
+    let elem = $("#textslide");
     setInterval(function() {
-        $("#textslide").html(stats[i]);
-        if (i == stats.length)
-            i=0;
-        else
+        elem.fadeOut(function(){
+            elem.html(stats[i]);
             i++;
-    }, 2 * 1000);
+            if(i >= stats.length){ i=0; }
+            elem.fadeIn();
+        }, 3 * 1000);
 
 </script>
 
