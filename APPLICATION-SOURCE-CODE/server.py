@@ -24,6 +24,27 @@ def close_connection(cnx):
     cnx.close()
 
 
+def get_statistics():
+    
+    # this func should return a list of strings, with info about the Database
+    res = ["Number of movies in the DB", 
+           "Number of movies with raiting above 8.5", #(aggregation on raiting with count)
+           "Number of alllll awards in the DB"
+    
+           "number of awards in Drama ", #(this will Join awards with genre)#
+           "The same but Action",
+           "The same but horror",
+    
+           "Youngest Actor in the DB with his birthday" #( aggregation on actors)
+           "Oldest Actor in the DB with his birthday"
+    ]
+
+    ####these string will be displayed in the homepage under the website name as a text slideshow
+
+    return res
+
+
+
 #global list with movie names for auto complete
 def get_movie_names():
     res = []
@@ -160,6 +181,8 @@ def get_details_by_id(film_id):
 
     close_connection(cnx)
 
+    res['rating'] = str(res['rating'])[:3]
+
     ##KHIMEL COMPRESSION
     res['image'] = res['image'].replace("_V1_", "_SL300_")
 
@@ -264,7 +287,7 @@ def get_topcast(f_id):
         res.append(row_map)
 
     close_connection(cnx)
-    
+
     res = order_list(res, ordered_actors)
 
     if len(res) >= 10:
@@ -278,8 +301,10 @@ movies_names = get_movie_names() #global list for auto complete
 @app.route('/')
 @app.route('/index')
 def index():
+    statistics = get_statistics()
+
     movies_posters = get_movie_posters()
-    return render_template('home.html', movies_names=movies_names, movies_posters=movies_posters)
+    return render_template('home.html', movies_names=movies_names, movies_posters=movies_posters, statistics=statistics)
 
 
 

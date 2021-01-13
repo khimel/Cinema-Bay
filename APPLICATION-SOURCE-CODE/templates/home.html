@@ -64,6 +64,7 @@
                     <h1 class="text-light text-center" id="homeHeader">
                         Cinema Bay
                     </h1>
+                    <div id="textslide" class ="text-light text-center"></div>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -83,5 +84,21 @@
 
 </div>
 
+
+<script>
+
+    var stats = {{ statistics|safe }};
+    
+    var i = 0;
+    
+    setInterval(function() {
+        $("#textslide").html(quotes[i]);
+        if (i == quotes.length)
+            i=0;
+        else
+            i++;
+    }, 2 * 1000);
+
+</script>
 
   {% endblock %}

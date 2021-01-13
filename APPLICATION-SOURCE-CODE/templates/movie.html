@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} {{query}}  {% endblock %}
+{% block title %} Cinema Bay  {% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="static/movie.css">
@@ -116,7 +116,7 @@
 					
 					<div class="row no-gutters">
 				<div class="col-12">
-					<h2 class="movie-title" > {{ context['title'] }} </h2> <i class="fa fa-star" style="font-size:24px;"></i>{{ context['rating']|int }}<sub>/10</sub>
+					<h2 class="movie-title" > {{ context['title'] }} </h2> <i class="fa fa-star" style="font-size:24px;"></i>{{ context['rating'] }}/10
 					<hr> 
 				</div>
 					<div class="col-12">
