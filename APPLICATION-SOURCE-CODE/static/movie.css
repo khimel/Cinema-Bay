@@ -223,8 +223,10 @@
         height: 30px;
     }
     
-    .btn-link{
-      color:inherit !important;
+    .nav-link{
+      color: blue;
+      background-color: white;
+
     }
     
 
