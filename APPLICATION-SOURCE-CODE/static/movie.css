@@ -224,14 +224,9 @@
     }
     
     .nav-link{
-      color: blue;
-      background-color: white;
+      background-color: blue;
+    }
 
-    }
-    li > a{
-      color:blue;
-      background-color: white;
-    }
     
 
   #actor:before {
