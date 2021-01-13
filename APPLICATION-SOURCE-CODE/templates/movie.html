@@ -33,7 +33,7 @@
 					<div class="card-header" id="headingOne">
 					    <h5 class="mb-0">
 					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					          Cool feature
+					          A website by TAU students
 					        </button>
 					    </h5>
 					</div>
@@ -41,7 +41,10 @@
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 					    <div class="card-body">
 					        <p class="card-text">
-								Empty for now
+								<p class="text-center">Mohammad K</p>
+								<p class="text-center">Muhammad W</p>
+								<p class="text-center">Sumaya</p>
+								<p class="text-center">Yazan</p>
 							</p>
 					    </div>
 					</div>
@@ -58,7 +61,7 @@
 					    <div class="card-body">
 							<p class="card-text">
 								{% for award in context['awards'] %}
-									<p>{{'|' if loop.index|string != '1' }} {{ award['count'] }} {{award['award'] }}s </p></span>
+									<p class="text-center">{{ award['count'] }} {{award['award'] }}s </p></span>
 								{% endfor %}
 							</p>
 					     </div>
@@ -125,19 +128,20 @@
 
 				</div>	
 				
-				
 				 </div>
+				 <hr>
+				 <h3 class="text center"> Did you know? </h3>
   				<div class="card border-0" id="mid-navbar">
 				  <div class="card-header">
 				    <ul class="nav nav-tabs border-0 d-flex justify-content-between">
 				      <li class="nav-item">
-				      <button class="btn btn-link  collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h5>Storyline</h5></button>
+				      <button class="btn btn-link  collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h5>Rank in the DB</h5></button>
 				      </li>
 				      <li class="nav-item">
-				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h5>Academy Awards</h5></button>
+				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h5>Actors worked with {{ context["director"] }}</h5></button>
 				      </li>
 				      <li class="nav-item">
-				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3"><h5>tab3</h5></button>
+				       <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3"><h5>Born This Month</h5></button>
 				      </li>
 				    </ul>
 				  </div>
@@ -145,36 +149,34 @@
 				  	<div class="collapse show" id="storyline" data-parent="#mid-navbar">
 				  	<div class="card border-0">
 				  		<div class="card-body">
-				  			<p  class="card-text ">{{ context['summary'] }}</p>
+				  			<p  class="card-text ">
+								  <h4 class="text-center"> 14<sub>th</sub></h4> 
+							</p>
 				  		</div>
 				  	</div>
 				    </div>
 				    <div class="collapse" id="tab2" data-parent="#mid-navbar">
 				    <div class="card border-0">
 				    	<div class="card-body">
-				    		<h5>winner</h5>
-				    		<ul>
-				    			<li>Best Performance by an Actor in a Supporting Role
-								Heath Ledger</li>
-				    			<li>Best Achievement in Sound Editing
-									Richard King</li>
-				    		</ul>
-
-				    		<h5>Nominee</h5>
-				    		<ul>
-				    			<li>Best Achievement in Cinematography
-								Wally Pfister</li>
-				    			<li>Best Achievement in Film Editing
-								Lee Smith</li>
-				    		</ul>
-				   
-				  </div>
+							<p  class="card-text">
+								<p class="text-center">Mohammad K + img</p>
+								<p class="text-center">Muhammad W + img</p>
+								<p class="text-center">Sumaya + img</p>
+								<p class="text-center">Yazan + img</p>
+						  	</p>
+				  		</div>
 				    </div>
 				    </div>
 				    <div class="collapse" id="tab3" data-parent="#mid-navbar">
 				   <div class="card border-0" >
 				   	 <div class="card-body">
-				   	 	 <p  class="card-text collapse"></p>
+				   	 	<p class="card-text collapse">
+							<h5>Actors from this film born this month:</h5>
+							<p class="text-center">Mohammad K + img</p>
+							<p class="text-center">Muhammad W + img</p>
+							<p class="text-center">Sumaya + img</p>
+							<p class="text-center">Yazan + img</p>
+						</p>
 				   	 </div>
 				   </div> 
 				   </div>
