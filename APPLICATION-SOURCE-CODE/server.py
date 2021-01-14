@@ -65,10 +65,10 @@ def get_ranks(f_id):
     for row in rows:
         res[row[0]] = row[1]
 
-    print(res)
 
     close_connection(cnx)
-
+    if len(res) > 5 :
+        res = res[:5]
     return res
 
 
@@ -95,7 +95,8 @@ def get_director_cast(director):
         res.append(row[0])
 
     close_connection(cnx)
-    print(res)
+    if len(res) > 10 :
+        res = res[:11]
     return res
 
 def get_actor_spec(actor_id):
@@ -124,6 +125,8 @@ def get_actor_spec(actor_id):
         res.append(row[0])
 
     close_connection(cnx)
+
+    print(res)
 
     return res
 
