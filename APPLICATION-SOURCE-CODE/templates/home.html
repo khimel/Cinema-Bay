@@ -69,15 +69,16 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <form class="form" action="/search" method="GET" >
+                    <form id="formz" class="form" action="/search" method="GET">
                         <div class="">
                             <input class="form-control" id="searchBar" type="text" placeholder="Search for a movie or Type anything if you feel lucky" required/>
                         </div>
-                        <div class="text-center mt-3">
-                            <input class="btn btn-success btn-lg" type="submit" value="Search" name="query">
-                            <input class="btn btn-warning btn-lg" type="submit" value="I Feel Lucky" name="text">
-                        </div>	
                     </form>
+                        <div class="text-center mt-3">
+                            <input class="btn btn-success btn-lg" form="formz" type="submit" value="Search" name="query">
+                            <input class="btn btn-warning btn-lg" form="formz" type="submit" value="I Feel Lucky" name="text">
+                        </div>	
+                    
                 </div>
             </div>
         </div>
