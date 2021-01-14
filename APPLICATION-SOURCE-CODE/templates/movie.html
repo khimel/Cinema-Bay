@@ -17,7 +17,7 @@
 	  <a id="topnav-brand" href="/" class="navbar-brand"><img class="mr-2" src="static/favicon.png" alt="." height="40" width="40">Cinema Bay</a>
 	  <form class="d-flex" action="/search" method="GET">
 		<input class="form-control me-2 mr-2" id="searchBar" type="search" name="query" placeholder="Movie Search" aria-label="Search" required>
-		<button id="searchbtn" class="btn btn-outline-success" type="submit">Search</button>
+		<button id="searchbtn" class="btn btn-success" type="submit">Search</button>
 	  </form>
 	</div>
 </nav>
@@ -168,7 +168,7 @@
 					
 				</div>
 		</div>
-		<!-------------- end of middle column --- sumaya --------------->
+	<!-------------- end of middle column --- sumaya --------------->
 			
 			
 		<div class="col-lg-3 movie-RSD align-content-center order-3">
@@ -216,19 +216,32 @@
 			</div>
 
 		<!--**********************************-->
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title">STREAM PROVIDERS</h5>
-				<p class="card-text">
-					{% for provider in context['providers'] %}
-						<span>{{'|' if loop.index|string != '1' }} {{ provider }} </span>
-					{% endfor %}
-				</p>
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">STREAM PROVIDERS</h5>
+					<p class="card-text">
+						{% for provider in context['providers'] %}
+							<span>{{'|' if loop.index|string != '1' }} {{ provider }} </span>
+						{% endfor %}
+					</p>
+				</div>
 			</div>
-		</div>
 			
 		<!--**********************************-->
-	
+		{% if other_parts|length > 0%}
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Continue to watch:</h5>
+					<p class="card-text">
+						<ul>
+						{% for movie in other_parts %}
+							<li>{{ movie }}</li>
+						{% endfor %}
+						</ul>
+					</p>
+				</div>
+			</div>
+		{% endif %}
 		</div>
 	</div>
 </div>

@@ -66,14 +66,18 @@ def get_ranks(f_id):
     cnx = connect_to_mysql_server()
     cur = cnx.cursor()
 
-    query = (   "SELECT FILM_GENRE.genre, COUNT(*) "
+    query = (   "SELECT FILM_GENRE.genre, COUNT(*) AS cnt "
                 "FROM FILM, FILM_GENRE "
                 "WHERE FILM.film_id = FILM_GENRE.film_id "
                 "AND FILM.rating > "
                 "(SELECT FILM.rating FROM FILM WHERE FILM.film_id = '%s')" % f_id + " "
-                "GROUP BY FILM_GENRE.genre;"
+                "AND FILM_GENRE.genre IN "
+                    "(SELECT FILM_GENRE.genre "
+                    "FROM FILM_GENRE "
+                    "WHERE FILM_GENRE.film_id = '%s'" % f_id + ") "
+                "GROUP BY FILM_GENRE.genre "
+                "ORDER BY cnt; "
             )
-
 
     cur.execute(query)
     rows = cur.fetchall()
@@ -86,6 +90,44 @@ def get_ranks(f_id):
     if len(res) > 5 :
         res = dict(list(res.items())[:5])
     return res
+
+def get_other_parts(f_id, threshold):
+
+    res = []
+
+    cnx = connect_to_mysql_server()
+    cur = cnx.cursor()
+
+    query = (   "SELECT FILM.film_id, COUNT(*) AS shared "
+                "FROM FILM, FILM_STAR "
+                "WHERE FILM.film_id <> '%s'" % f_id + " "
+                "AND FILM.film_id = FILM_STAR.film_id "
+                "AND FILM_STAR.actor_id IN "
+                    "(SELECT FILM_STAR.actor_id "
+                    "FROM FILM, FILM_STAR "
+                    "WHERE FILM.film_id = FILM_STAR.film_id "
+                    "AND FILM.film_id = '%s'" % f_id + ") "
+                "GROUP BY FILM.film_id "
+                "HAVING shared >  '%s'" % threshold + " "
+                "ORDER BY FILM.year; "
+            )
+
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    for row in rows:
+        res.append(row[0])
+
+    close_connection(cnx)
+
+    final = []
+    for id in res:
+        final.append(get_details_by_id(id))
+
+    for i in range(len(final)):
+        final[i] = final[i]['title']
+
+    return final ### this should be now list of strings
 
 
 def get_director_cast(director):
@@ -141,6 +183,9 @@ def get_actor_spec(actor_id):
         res.append(row[0])
 
     close_connection(cnx)
+
+    if len(res) >=5 :
+        res = res[:5]
     return res
 
 
@@ -426,7 +471,6 @@ def search_return_html():
         query = request.args.get('query', default = None)
         if(query not in movies_names):
             return render_template("not_found.html", query=query)
-
         context = get_details_by_name(query)
 
     recs = more_like_this(context['film_id'], 2, 1)
@@ -436,8 +480,9 @@ def search_return_html():
 
     d_cast = get_director_cast(context['director'])
 
+    other_parts = get_other_parts(context['film_id'], 5) ## sequel movies
 
-    return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast)
+    return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast, other_parts=other_parts)
 
 
 
