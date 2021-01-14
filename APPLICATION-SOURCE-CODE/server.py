@@ -10,7 +10,6 @@ import mysql.connector
 app = Flask(__name__)
 
 def connect_to_mysql_server():
-    print("im here man")
     cnx = mysql.connector.connect(user='DbMysql07',
                                   password='BestSqlProject101',
                                   host='mysqlsrv1.cs.tau.ac.il',
@@ -20,12 +19,10 @@ def connect_to_mysql_server():
         print("Couldn't connect!")
         exit(-1)
     else:
-        print("we are connected")
         return cnx
 
 
 def close_connection(cnx):
-    print("cant close")
     cnx.close()
 
 
@@ -60,7 +57,6 @@ def get_born_this_month():
 
 
 def get_ranks(f_id):
-    print("im here ranks")
     # rank in the db
     # rank in each genre it has
     # [{'action':rank }, {'drama': rank}]
@@ -96,7 +92,6 @@ def get_ranks(f_id):
     return res
 
 def get_other_parts(f_id, threshold):
-    print("im here parts")
     res = []
 
     cnx = connect_to_mysql_server()
@@ -492,5 +487,4 @@ def search_return_html():
 
 
 if __name__ == '__main__':
-    print("starting to workkk")
     app.run(host="0.0.0.0",port="40444")
