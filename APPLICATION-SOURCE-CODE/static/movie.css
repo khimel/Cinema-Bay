@@ -263,3 +263,11 @@
     border-radius: 5px;
     border-width: 2px;
   }
+
+  .partz{
+    transition: 1s;
+  }
+
+  .partz:hover{
+    color:blue;
+  }

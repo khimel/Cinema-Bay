@@ -231,11 +231,11 @@
 		{% if other_parts|length > 0%}
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">Continue to watch:</h5>
+					<h5 class="card-title">Next in the sequel:</h5>
 					<p class="card-text">
 						<ul>
 						{% for movie in other_parts %}
-							<li>{{ movie }}</li>
+							<li class="partz" style="cursor: pointer; color:white"><a href="/search?query={{movie}}"></a>{{ movie }}</li>
 						{% endfor %}
 						</ul>
 					</p>
