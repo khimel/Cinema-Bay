@@ -95,7 +95,7 @@
     let elem = $("#textslide");
     setInterval(function() {
         elem.fadeOut(function(){
-            elem.html("Famous actor born this month:" + born_this_month[i]);
+            elem.html("Famous actor born this month: " + born_this_month[i]);
             i++;
             if(i >= born_this_month.length){ i=0; }
             elem.fadeIn();
