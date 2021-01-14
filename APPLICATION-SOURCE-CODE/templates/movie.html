@@ -52,7 +52,7 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					    <div class="card-body">
 							<p class="card-text">
-								{% if context['awards'].length|string == ''%}<p class="text-center">No awards won</p> {% endif %}
+								{% if context['awards'].length <1%}<p class="text-center">No awards won</p> {% endif %}
 								{% for award in context['awards'] %}
 									<h6 class="text-center">Awarded {{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string != '1' else ''}}</h6>
 								{% endfor %}
@@ -79,7 +79,7 @@
 											<h6 class="text-center">Average Movie Rating: {{ (actor["avg"]|string)[:3]}} /10</h6>
 											<h6 class="text-center">Famous with movies in :</h6>
 											{% for spec in actor['spec'] %}
-												<span>{{'|' if loop.index|string != '1' }} {{ spec }}</span>
+												<span class="text-center">{{'|' if loop.index|string != '1' }} {{ spec }}</span>
 											{% endfor %}
 										</div>
 									</div>
@@ -151,6 +151,7 @@
 							<div class="card border-0">
 								<div class="card-body">
 									<p  class="card-text">
+										<h6 class=""> {{ context['director'] }} directed these famous actors :</h6>
 										<ul>
 										{% for actor in d_cast %}
 											<li class=""> {{actor}} </li> 
