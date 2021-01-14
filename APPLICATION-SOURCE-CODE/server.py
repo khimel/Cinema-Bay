@@ -57,6 +57,7 @@ def get_born_this_month():
 
 
 def get_ranks(f_id):
+    print("im here ranks")
     # rank in the db
     # rank in each genre it has
     # [{'action':rank }, {'drama': rank}]
@@ -92,7 +93,7 @@ def get_ranks(f_id):
     return res
 
 def get_other_parts(f_id, threshold):
-
+    print("im here parts")
     res = []
 
     cnx = connect_to_mysql_server()
