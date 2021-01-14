@@ -420,8 +420,9 @@ def search_return_html():
 
     context['ranks'] = context['film_id'] ## put here the ranks
 
+    d_cast = get_director_cast(context['director'])
 
-    return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast)
+    return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast)
 
 
 
