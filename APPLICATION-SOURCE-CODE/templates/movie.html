@@ -135,7 +135,7 @@
 				 <h3 class="text-center"> Did you know? </h3>
   				<div class="card border-0" id="mid-navbar">
 					<div class="card-header">
-						<ul class="nav nav-tabs d-flex justify-content-between">
+						<ul class="nav nav-tabs d-flex justify-content-around">
 							<li class="nav-item">
 								<button class="btn btn-outline-info collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h6>Rankings</h6></button>
 							</li>
@@ -253,7 +253,7 @@
 			<div class="carousel-inner" role="listbox">
 			{% for row in recs|batch(5) %}
 				<div class="carousel-item item {% if loop.index|string == '1' %} active {% endif %}">
-					<div class="row h-100">
+					<div class="row justify-content-around h-100">
 						{% for movie in row %}
 						<div class="col-md-2 p-0 {% if loop.index|string != '1' %} clearfix d-none d-md-block {% endif %}">
 							<div class="card h-100">

@@ -235,9 +235,8 @@
 
   
 
-  .nav-tabs .nav-link{
-    cursor: pointer;
-
+  .nav-tabs{
+    border-bottom-width: 0px;
   }
 
 
