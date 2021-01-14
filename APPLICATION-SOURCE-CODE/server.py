@@ -417,7 +417,7 @@ def search_return_html():
     recs = more_like_this(context['film_id'], 2, 1)
     topcast = get_topcast(context['film_id'])
 
-    context['ranks'] = context['film_id'] ## put here the ranks
+    context['ranks'] = get_ranks(context['film_id']) ## put here the ranks
 
     d_cast = get_director_cast(context['director'])
     print("hiiiiiiiiiiiii")
