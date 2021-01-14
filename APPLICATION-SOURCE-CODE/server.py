@@ -462,12 +462,14 @@ def search_return_html():
     f_id = request.args.get('id', default=None)
     text = request.args.get('text', default=None)
     if( f_id is not None):
+        f_id = bleach.clean(f_id)
         context = get_details_by_id(f_id)
     elif(text is not None):
         text = bleach.clean(text)
         context = get_details_by_name("Inception")
     else:
         query = request.args.get('query', default = None)
+        query = bleach.clean(query)
         if(query not in movies_names):
             return render_template("not_found.html", query=query)
         context = get_details_by_name(query)

@@ -235,7 +235,7 @@
 					<p class="card-text">
 						<ul>
 						{% for movie in other_parts %}
-							<li class="partz" style="cursor: pointer; color:white"><a href="/search?query={{movie}}"></a>{{ movie }}</li>
+						<a href="/search?query={{movie}}"><li class="partz" style="cursor: pointer;">{{ movie }}</li></a>
 						{% endfor %}
 						</ul>
 					</p>
