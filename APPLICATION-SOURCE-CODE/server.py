@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 
+import datetime
 import random
 import bleach
 
@@ -25,17 +26,32 @@ def close_connection(cnx):
     cnx.close()
 
 
-def get_born_today():
-    # this func should return a list of strings, with info about the Database
-    res = [
-           "Number of alllll awards in the DB"
-           "# ", #(this will Join awards with genre)#
-           "Number of award in each genre",
-           ###### randomize genre #####
-    
-    ]
+def get_born_this_month():
 
-    ####these string will be displayed in the homepage under the website name as a text slideshow
+    res = []
+
+    month = datetime.datetime.today().month
+    cnx = connect_to_mysql_server()
+    cur = cnx.cursor()
+
+    query = (   "SELECT actor_name "
+                "FROM "
+                    "(SELECT ACTOR.actor_id, ACTOR.actor_name, AVG(FILM.rating) AS film_avg "
+                    "FROM ACTOR, FILM, FILM_STAR "
+                    "WHERE ACTOR.birthdate LIKE '%."  + "%s" % month + "' "
+                    "AND ACTOR.actor_id = FILM_STAR.actor_id "
+                    "AND FILM.film_id = FILM_STAR.film_id "
+                    "GROUP BY ACTOR.actor_id, ACTOR.actor_name "
+                    "ORDER BY film_avg DESC ) SUB_QUERY "
+            )
+
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    for row in rows:
+        res.append(row[0])
+
+    close_connection(cnx)
 
     return res
 
@@ -188,7 +204,7 @@ def get_awards(film_id):
     cur.execute("SELECT award, count FROM FILM_AWARD WHERE film_id = '%s'" % film_id)
     rows = cur.fetchall()
 
-    awards = ["Oscar", "Golden Globe", "BAFTA Film award"]
+#    awards = ["Oscar", "Golden Globe", "BAFTA Film award"]
     for row in rows:
         res.append({'award':row[0], 'count':row[1]})
 
@@ -388,10 +404,10 @@ movies_names = get_movie_names() #global list for auto complete
 @app.route('/')
 @app.route('/index')
 def index():
-    born_today = get_born_today()
+    born_this_month = get_born_this_month()
 
     movies_posters = get_movie_posters()
-    return render_template('home.html', movies_names=movies_names, movies_posters=movies_posters, born_today=born_today)
+    return render_template('home.html', movies_names=movies_names, movies_posters=movies_posters, born_this_month=born_this_month)
 
 
 
