@@ -52,7 +52,7 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					    <div class="card-body">
 							<p class="card-text">
-								{% if context['awards'].length <1%}<p class="text-center">No awards won</p> {% endif %}
+								{% if context['awards']|length < 1%}<p class="text-center">No awards won</p> {% endif %}
 								{% for award in context['awards'] %}
 									<h6 class="text-center">Awarded {{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string != '1' else ''}}</h6>
 								{% endfor %}
