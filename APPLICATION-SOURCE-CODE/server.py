@@ -68,7 +68,7 @@ def get_ranks(f_id):
 
     close_connection(cnx)
     if len(res) > 5 :
-        res = dict(res.items()[:5])
+        res = dict(list(res.items())[:5])
     return res
 
 
