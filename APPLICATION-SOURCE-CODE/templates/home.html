@@ -75,8 +75,8 @@
                         </div>
                     </form>
                         <div class="text-center mt-3">
-                            <input class="btn btn-success btn-lg" form="formz" type="submit" value="Search" name="query">
-                            <input class="btn btn-warning btn-lg" form="formz" type="submit" value="I Feel Lucky" name="text">
+                            <input id="s" class="btn btn-success btn-lg" form="formz" type="submit" value="Search" name="query" onclick="changeVal('s')">
+                            <input id="l" class="btn btn-warning btn-lg" form="formz" type="submit" value="I Feel Lucky" name="text" onclick="changeVal('l')">
                         </div>	
                     
                 </div>
@@ -100,6 +100,11 @@
             if(i >= born_today.length){ i=0; }
             elem.fadeIn();
         });}, 5 * 1000 );
+
+        function changeVal(id){
+            let val = $("#searchBar").val();
+            $("#"+id).val(val);
+        }
 
 </script>
 
