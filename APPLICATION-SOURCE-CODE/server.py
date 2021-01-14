@@ -97,7 +97,7 @@ def get_director_cast(director):
         res.append(row[0])
 
     close_connection(cnx)
-
+    print(res)
     return res
 
 def get_actor_spec(actor_id):
@@ -420,6 +420,7 @@ def search_return_html():
     context['ranks'] = context['film_id'] ## put here the ranks
 
     d_cast = get_director_cast(context['director'])
+    print("hiiiiiiiiiiiii")
 
     return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast)
 
