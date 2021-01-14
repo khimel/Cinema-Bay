@@ -87,15 +87,15 @@
 
 <script>
 
-    var stats = {{ statistics|safe }};
+    var born_today = {{ born_today|safe }};
     
     var i = 0;
     let elem = $("#textslide");
     setInterval(function() {
         elem.fadeOut(function(){
-            elem.html(stats[i]);
+            elem.html(born_today[i]);
             i++;
-            if(i >= stats.length){ i=0; }
+            if(i >= born_today.length){ i=0; }
             elem.fadeIn();
         });}, 5 * 1000 );
 

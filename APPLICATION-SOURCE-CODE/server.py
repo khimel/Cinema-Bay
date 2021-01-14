@@ -311,10 +311,10 @@ movies_names = get_movie_names() #global list for auto complete
 @app.route('/')
 @app.route('/index')
 def index():
-    statistics = get_statistics()
+    born_today = get_born_today()
 
     movies_posters = get_movie_posters()
-    return render_template('home.html', movies_names=movies_names, movies_posters=movies_posters, statistics=statistics)
+    return render_template('home.html', movies_names=movies_names, movies_posters=movies_posters, born_today=born_today)
 
 
 

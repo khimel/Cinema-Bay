@@ -14,10 +14,10 @@
 <!-- top nav bar - mhamad -->
 <nav id="topnav" class="navbar navbar-dark">
 	<div class="container-fluid">
-	  <a id="topnav-brand" href="/" class="navbar-brand">Cinema Bay</a>
+	  <a id="topnav-brand" href="/" class="navbar-brand"><img class="mr-2" src="static/favicon.png" alt="." height="40" width="40">Cinema Bay</a>
 	  <form class="d-flex" action="/search" method="GET">
 		<input class="form-control me-2 mr-2" id="searchBar" type="search" name="query" placeholder="Movie Search" aria-label="Search" required>
-		<button class="btn btn-outline-success" type="submit">Search</button>
+		<button id="searchbtn" class="btn btn-outline-success" type="submit">Search</button>
 	  </form>
 	</div>
 </nav>
@@ -27,7 +27,7 @@
 <div class="container m-0 p-0 mw-100">
 	
 	<div class="row movie-container p-4">
-		<div class="col-md-3  no-gutters  order-second order-sm-first">
+		<div class="col-lg-3  no-gutters  order-2">
 			<div id="accordion" class="col-12">
 				<div class="card" id="ac-card1">
 					<div class="card-header" id="headingOne">
@@ -60,8 +60,9 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					    <div class="card-body">
 							<p class="card-text">
+								{% if context['awards'].length|string == '0' %}<p class="text-center">No awards won</p> {% endif%}
 								{% for award in context['awards'] %}
-									<p class="text-center">{{ award['count'] }} {{award['award'] }}s </p></span>
+									<p class="text-center">{{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string == '1' else ''}}</p>
 								{% endfor %}
 							</p>
 					     </div>
@@ -87,7 +88,8 @@
 										<img id="actor" class="d-block w-100"  src= " {{ actor['image'] if actor['image'] != ' ' else "static/blank.png" }} " alt="blank" height="300">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
-											<h5 class="text-center">Average Movie Rating: {{ (actor["avg"]|string)[:3]}} /10</h5>
+											<h6 class="text-center">Average Movie Rating: {{ (actor["avg"]|string)[:3]}} /10</h6>
+											<h6 class="text-center">Specializaion: Actoin | Drama</h6>
 										</div>
 									</div>
 								{% endfor %}
@@ -111,7 +113,7 @@
 		</div>
 
 	<!--------- middle column --- sumaya -------->
-		<div class="col-md-6 order-first order-sm-second">
+		<div class="col-lg-6 order-lg-2">
 			<div class="col">
 			</div>
 			<div class ="col row-movie">
@@ -132,60 +134,41 @@
 				 <hr>
 				 <h3 class="text-center"> Did you know? </h3>
   				<div class="card border-0" id="mid-navbar">
-				  <div class="card-header">
-				    <ul class="nav nav-tabs d-flex justify-content-between">
-				      <li class="nav-item">
-				      <a class="nav-link  collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h6>Rank in the DB</h6></a>
-				      </li>
-				      <li class="nav-item">
-				       <a class="nav-link collapsed"  data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h6>Worked with {{ context["director"] }}</h6></a>
-				      </li>
-				      <li class="nav-item">
-				       <a class="nav-link collapsed"  data-toggle="collapse" data-target="#tab3" aria-expanded="false" aria-controls="tab3"><h6>Born This Month</h6></a>
-				      </li>
-				    </ul>
-				  </div>
-				  <div class="card-body" >
-				  	<div class="collapse show" id="storyline" data-parent="#mid-navbar">
-				  	<div class="card border-0">
-				  		<div class="card-body">
-				  			<p  class="card-text ">
-								  <h4 class="text-center"> 14<sub>th</sub></h4> 
-							</p>
-				  		</div>
-				  	</div>
-				    </div>
-				    <div class="collapse" id="tab2" data-parent="#mid-navbar">
-				    <div class="card border-0">
-				    	<div class="card-body">
-							<p  class="card-text">
-								<p class="text-center">Mohammad K + img</p>
-								<p class="text-center">Muhammad W + img</p>
-								<p class="text-center">Sumaya + img</p>
-								<p class="text-center">Yazan + img</p>
-						  	</p>
-				  		</div>
-				    </div>
-				    </div>
-				    <div class="collapse" id="tab3" data-parent="#mid-navbar">
-				   <div class="card border-0" >
-				   	 <div class="card-body">
-				   	 	<p class="card-text collapse">
-							<h5>Actors from this film born this month:</h5>
-							<p class="text-center">Mohammad K + img</p>
-							<p class="text-center">Muhammad W + img</p>
-							<p class="text-center">Sumaya + img</p>
-							<p class="text-center">Yazan + img</p>
-						</p>
-				   	 </div>
-				   </div> 
-				   </div>
-				    </div>
-				    
+					<div class="card-header">
+						<ul class="nav nav-tabs d-flex justify-content-between">
+							<li class="nav-item">
+								<button class="btn btn-outline-info collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h6>Rankings</h6></button>
+							</li>
+							<li class="nav-item">
+								<button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h6>{{ context["director"] }} also directed</h6></button>
+							</li>
+						</ul>
+					</div>
+					<div class="card-body">
+						<div class="collapse show" id="storyline" data-parent="#mid-navbar">
+							<div class="card border-0">
+								<div class="card-body">
+									<p class="card-text ">
+										<h4 class="text-center"> 14<sub>th</sub></h4> 
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="collapse" id="tab2" data-parent="#mid-navbar">
+							<div class="card border-0">
+								<div class="card-body">
+									<p  class="card-text">
+										<p class="text-center">Mohammad K + img</p>
+										<p class="text-center">Muhammad W + img</p>
+										<p class="text-center">Sumaya + img</p>
+										<p class="text-center">Yazan + img</p>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div> 
 				</div>
-
-				 
-				</div>
+			</div>
 				<div class="col-12 no-gutters">
 					
 				</div>
@@ -193,7 +176,7 @@
 		<!-------------- end of middle column --- sumaya --------------->
 			
 			
-		<div class="col-md-3 movie-RSD align-content-center xs-order-3">
+		<div class="col-lg-3 movie-RSD align-content-center order-3">
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">PREMIERE</h5>
@@ -258,7 +241,7 @@
 
 
 <h3 class="font-weight-light text-center mt-4 mb-3">More Movies Like This</h3>
-<div class="container mb-5">
+<div class="container col-md-11 col-7 mb-5">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			
 			<ol class="carousel-indicators">

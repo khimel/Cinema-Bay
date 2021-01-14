@@ -20,7 +20,7 @@
     /* Top nav bar -- mhamad */
     
     #topnav{
-      background-color: black;
+      background-color: transparent;
     }
     i{
       margin-right: 10px;
@@ -187,12 +187,6 @@
       padding: 0;
     }
     
-    #mid-navbar button{
-      border-radius: 2px;
-      background-color: transparent;
-      border-color: linear-gradient(235deg,#a200ff,#060c21,#00bcd4) 2px;
-      text-decoration: none;
-    }
     
     
     #cast p{
@@ -236,3 +230,18 @@
     height: 50px;
     width: 50px;
     background-image: url(blank.png);
+
+  }
+
+  
+
+  .nav-tabs .nav-link{
+    cursor: pointer;
+
+  }
+
+
+  #searchbtn{
+    border-width: 2px;
+    font-weight: 500;
+  }
