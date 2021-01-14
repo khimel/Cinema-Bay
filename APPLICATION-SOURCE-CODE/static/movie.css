@@ -62,6 +62,10 @@
     }
     */
       
+
+    .btn-link{
+      color: #00abff;
+    }
     .row{
      justify-content: space-between;
     }
@@ -243,4 +247,15 @@
   #searchbtn{
     border-width: 2px;
     font-weight: 500;
+  }
+
+
+  #headingThree{
+    border-color: transparent;
+  }
+  #headingTwo{
+    border-color: transparent;
+  }
+  #headingOne{
+    border-color: transparent;
   }

@@ -103,7 +103,10 @@
 
         function changeVal(id){
             let val = $("#searchBar").val();
-            $("#"+id).val(val);
+            if(val != ""){
+                $("#"+id).val(val);
+            }
+            
         }
 
 </script>

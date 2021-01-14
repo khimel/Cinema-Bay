@@ -30,12 +30,8 @@
 		<div class="col-lg-3  no-gutters  order-2">
 			<div id="accordion" class="col-12">
 				<div class="card" id="ac-card1">
-					<div class="card-header" id="headingOne">
-					    <h5 class="mb-0">
-					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					          A website by TAU students
-					        </button>
-					    </h5>
+					<div class="card-header btn btn-info btn-lg collapsed text-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="headingOne">
+					    A website by TAU students
 					</div>
 
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
@@ -50,19 +46,15 @@
 					</div>
 				</div>
 				<div class="card" id="Awards">
-					<div class="card-header" id="headingTwo">
-					    <h5 class="mb-0">
-					        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					          Famous Awards
-					        </button>
-					    </h5>
+					<div class="card-header btn btn-info btn-lg collapsed text-center" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						Famous Awards
 					</div>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					    <div class="card-body">
 							<p class="card-text">
-								{% if context['awards'].length|string == '0' %}<p class="text-center">No awards won</p> {% endif%}
+								{% if context['awards'].length|string == '0' or context['awards']|string == '' %}<p class="text-center">No awards won {{ context['awards'].length }}</p> {% endif %}
 								{% for award in context['awards'] %}
-									<p class="text-center">{{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string == '1' else ''}}</p>
+									<h6 class="text-center">{{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string == '1' else ''}}</h6>
 								{% endfor %}
 							</p>
 					     </div>
@@ -71,12 +63,8 @@
 
 					<!-- cast card with carousel - mhamad-->
 				<div class="card" id="ac-card3">
-					<div class="card-header" id="headingThree">
-					    <h5 class="mb-0">
-					        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+					<div class="card-header btn btn-info btn-lg text-center" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
 					        Top Cast
-					        </button>
-					    </h5>
 					</div>
 						
 					<div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
@@ -241,7 +229,7 @@
 
 
 <h3 class="font-weight-light text-center mt-4 mb-3">More Movies Like This</h3>
-<div class="container col-md-11 col-7 mb-5">
+<div class="container col-md-9 col-7 mb-5">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			
 			<ol class="carousel-indicators">

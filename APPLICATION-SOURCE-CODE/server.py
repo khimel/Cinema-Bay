@@ -325,6 +325,8 @@ def search_return_html():
     f_id = request.args.get('id', default=None)
     if( f_id is not None):
         context = get_details_by_id(f_id)
+    elif(request.args.get('text', default=None)):
+        context = get_details_by_name("Inception")
     else:
         query = request.args.get('query', default = None)
         # sanitize input
