@@ -120,9 +120,12 @@ def get_actor_spec(actor_id):
     cur.execute(query)
     rows = cur.fetchall()
 
+    print(rows)
+
     for row in rows:
         res.append(row[0])
 
+    print(res)
     close_connection(cnx)
 
     return res
