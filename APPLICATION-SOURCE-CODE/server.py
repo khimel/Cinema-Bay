@@ -68,7 +68,7 @@ def get_ranks(f_id):
 
     close_connection(cnx)
     if len(res) > 5 :
-        res = res[:5]
+        res = dict(res.items()[:5])
     return res
 
 
@@ -126,7 +126,6 @@ def get_actor_spec(actor_id):
 
     close_connection(cnx)
 
-    print(res)
 
     return res
 
@@ -408,7 +407,6 @@ def search_return_html():
         context = get_details_by_id(f_id)
     elif(text is not None):
         text = bleach.clean(text)
-        print(text)
         context = get_details_by_name("Inception")
     else:
         query = request.args.get('query', default = None)
@@ -423,7 +421,7 @@ def search_return_html():
     context['ranks'] = get_ranks(context['film_id']) ## put here the ranks
 
     d_cast = get_director_cast(context['director'])
-    print("hiiiiiiiiiiiii")
+
 
     return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast)
 
