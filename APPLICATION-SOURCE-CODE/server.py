@@ -91,8 +91,6 @@ def get_director_cast(director):
     cur.execute(query)
     rows = cur.fetchall()
 
-    exit(-1)
-
     for row in rows:
         res.append(row[0])
 
@@ -120,12 +118,11 @@ def get_actor_spec(actor_id):
     cur.execute(query)
     rows = cur.fetchall()
 
-    print(rows)
+
 
     for row in rows:
         res.append(row[0])
 
-    print(res)
     close_connection(cnx)
 
     return res
