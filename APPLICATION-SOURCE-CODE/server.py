@@ -91,7 +91,6 @@ def get_director_cast(director):
     cur.execute(query)
     rows = cur.fetchall()
 
-    print(rows)
     exit(-1)
 
     for row in rows:
