@@ -52,9 +52,9 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					    <div class="card-body">
 							<p class="card-text">
-								{% if context['awards'].length|string == '' or context['awards']|string == '' %}<p class="text-center">No awards won</p> {% endif %}
+								{% if context['awards'].length|string == ''%}<p class="text-center">No awards won</p> {% endif %}
 								{% for award in context['awards'] %}
-									<h6 class="text-center">{{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string == '1' else ''}}</h6>
+									<h6 class="text-center">Awarded {{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string != '1' else ''}}</h6>
 								{% endfor %}
 							</p>
 					     </div>
@@ -77,7 +77,10 @@
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
 											<h6 class="text-center">Average Movie Rating: {{ (actor["avg"]|string)[:3]}} /10</h6>
-											<h6 class="text-center">Specializaion: Actoin | Drama</h6>
+											<h6 class="text-center">Famous with movies in :</h6>
+											{% for spec in actor['spec'] %}
+												<span>{{'|' if loop.index|string != '1' }} {{ spec }}</span>
+											{% endfor %}
 										</div>
 									</div>
 								{% endfor %}
@@ -120,7 +123,7 @@
 				
 				 </div>
 				 <hr>
-				 <h3 class="text-center"> Did you know? </h3>
+				 <h3 class="text-center"> Do you know? </h3>
   				<div class="card border-0" id="mid-navbar">
 					<div class="card-header">
 						<ul class="nav nav-tabs d-flex justify-content-around">
@@ -128,7 +131,7 @@
 								<button class="btn btn-outline-info collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h6>Rankings</h6></button>
 							</li>
 							<li class="nav-item">
-								<button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h6>{{ context["director"] }} also directed</h6></button>
+								<button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h6>{{ context["director"] }} Also Directed</h6></button>
 							</li>
 						</ul>
 					</div>
@@ -137,7 +140,9 @@
 							<div class="card border-0">
 								<div class="card-body">
 									<p class="card-text ">
-										<h4 class="text-center"> 14<sub>th</sub></h4> 
+									{% for genre,rank in context['ranks'].items() %}
+										<h4 class="text-center">{{rank}}<sub>th</sub> in {{ genre }}</h4> 
+									{% endfor %}
 									</p>
 								</div>
 							</div>
@@ -146,10 +151,11 @@
 							<div class="card border-0">
 								<div class="card-body">
 									<p  class="card-text">
-										<p class="text-center">Mohammad K + img</p>
-										<p class="text-center">Muhammad W + img</p>
-										<p class="text-center">Sumaya + img</p>
-										<p class="text-center">Yazan + img</p>
+										<ol>
+										{% for actor in d_cast %}
+											<li class=""> actor </li> 
+										{% endfor %}
+										</ol>
 									</p>
 								</div>
 							</div>

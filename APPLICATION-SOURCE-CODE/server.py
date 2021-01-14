@@ -44,16 +44,89 @@ def get_ranks(f_id):
     # rank in the db
     # rank in each genre it has
     # [{'action':rank }, {'drama': rank}]
-    pass
+
+    res = {}
+
+    cnx = connect_to_mysql_server()
+    cur = cnx.cursor()
+
+    query = (   "SELECT FILM_GENRE.genre, COUNT(*) "
+                "FROM FILM, FILM_GENRE "
+                "WHERE FILM.film_id = FILM_GENRE.film_id "
+                "AND FILM.rating > "
+                "(SELECT FILM.rating FROM FILM WHERE FILM.film_id = '%s')" % f_id + " "
+                "GROUP BY FILM_GENRE.genre;"
+            )
+
+
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    for row in rows:
+        res[row[0]] = row[1]
+
+    print(res)
+
+    close_connection(cnx)
+
+    return res
 
 
 def get_director_cast(director):
-    pass
-    #list with actors names
+    director = director.replace("'", "''")
+    res = []
+
+    cnx = connect_to_mysql_server()
+    cur = cnx.cursor()
+
+    query = (   "SELECT ACTOR.actor_name, COUNT(*) AS times "
+                "FROM ACTOR, FILM_STAR, FILM "
+                "WHERE ACTOR.actor_id = FILM_STAR.actor_id "
+                "AND FILM_STAR.film_id = FILM.film_id "
+                "AND FILM.director = '%s'" % director + " "
+                "GROUP BY ACTOR.actor_name "
+                "ORDER BY times DESC"
+            )
+
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    print(rows)
+    exit(-1)
+
+    for row in rows:
+        res.append(row[0])
+
+    close_connection(cnx)
+
+    return res
 
 def get_actor_spec(actor_id):
-    pass
-    # return a string with the genre he sepcialize in
+
+    res = []
+
+    cnx = connect_to_mysql_server()
+    cur = cnx.cursor()
+
+    query = (   "SELECT FILM_GENRE.genre, COUNT(*) popularity "
+                "FROM FILM_GENRE, FILM, FILM_STAR "
+                "WHERE FILM_GENRE.film_id = FILM.film_id "
+                "AND FILM.film_id = FILM_STAR.film_id "
+                "AND FILM_STAR.actor_id = '%s'" % actor_id + " "
+                "GROUP BY FILM_GENRE.genre "
+                "ORDER BY popularity DESC;"
+            )
+
+
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    for row in rows:
+        res.append(row[0])
+
+    close_connection(cnx)
+
+    return res
 
 
 #global list with movie names for auto complete
@@ -301,6 +374,10 @@ def get_topcast(f_id):
 
     res = order_list(res, ordered_actors)
 
+    # adding here his specialziation
+    for i in range(0, len(res)):
+        res.append({'spec':get_actor_spec(res[i]['id'])})
+
     if len(res) >= 10:
         res = res[:10]
     return res
@@ -340,6 +417,10 @@ def search_return_html():
 
     recs = more_like_this(context['film_id'], 2, 1)
     topcast = get_topcast(context['film_id'])
+
+    context['ranks'] = context['film_id'] ## put here the ranks
+
+
     return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast)
 
 

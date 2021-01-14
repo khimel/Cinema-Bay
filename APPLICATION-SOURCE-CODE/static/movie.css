@@ -142,9 +142,7 @@
       padding-bottom: 50px;
     
     }
-    .movie-RSD h5{
-       /*font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif; */
-    }
+
     
     #myVideo iframe{
       top:0;
@@ -251,14 +249,17 @@
 
 
   #headingThree{
-    background-color: #045067;
-    border-color: transparent;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 2px;
   }
   #headingTwo{
-    background-color: #045067;
-    border-color: transparent;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 2px;
   }
   #headingOne{
-    background-color: #045067;
-    border-color: transparent;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 2px;
   }
