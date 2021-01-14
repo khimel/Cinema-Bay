@@ -329,7 +329,8 @@ def search_return_html():
         context = get_details_by_id(f_id)
     elif(text is not None):
         text = bleach.clean(text)
-        context = get_details_by_name(text)
+        print(text)
+        context = get_details_by_name("Inception")
     else:
         query = request.args.get('query', default = None)
         if(query not in movies_names):
