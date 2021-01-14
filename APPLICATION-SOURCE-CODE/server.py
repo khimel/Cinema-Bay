@@ -125,8 +125,6 @@ def get_actor_spec(actor_id):
         res.append(row[0])
 
     close_connection(cnx)
-
-
     return res
 
 
@@ -377,7 +375,7 @@ def get_topcast(f_id):
 
     # adding here his specialziation
     for i in range(0, len(res)):
-        res.append({'spec':get_actor_spec(res[i]['id'])})
+        res[i]['spec'] = get_actor_spec(res[i]['id'])})
 
     if len(res) >= 10:
         res = res[:10]
