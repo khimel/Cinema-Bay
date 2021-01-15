@@ -25,6 +25,33 @@ def connect_to_mysql_server():
 def close_connection(cnx):
     cnx.close()
 
+def get_film_id_by_text(txt):
+
+    res = []
+
+    cnx = connect_to_mysql_server()
+    cur = cnx.cursor()
+
+    txt = txt.replace("'", "''")
+
+    query = (   "SELECT FILM.film_id "
+                "FROM FILM "
+                "WHERE Match(summary) Against(+'%s' IN BOOLEAN MODE); " % txt
+            )
+
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    for row in rows:
+        res.append(row[0])
+
+    close_connection(cnx)
+    random.shuffle(res)
+
+    if len(res) != 0:
+        return res[0]
+    return '0'
+
 
 def get_born_this_month():
 
@@ -57,9 +84,6 @@ def get_born_this_month():
 
 
 def get_ranks(f_id):
-    # rank in the db
-    # rank in each genre it has
-    # [{'action':rank }, {'drama': rank}]
 
     res = {}
 
@@ -126,7 +150,7 @@ def get_other_parts(f_id, threshold):
     for i in range(len(final)):
         final[i] = final[i]['title']
 
-    return final ### this should be now list of strings
+    return final 
 
 
 def get_director_cast(director):
@@ -176,8 +200,6 @@ def get_actor_spec(actor_id):
     cur.execute(query)
     rows = cur.fetchall()
 
-
-
     for row in rows:
         res.append(row[0])
 
@@ -208,7 +230,6 @@ def get_movie_posters():
     # returns a list with [{"id":"nifen", "poster":"link to poster"},]
     # size of list is 30
 
-###### khimel - changed it to title with poster not id #####
     res = []
 
     cnx = connect_to_mysql_server()
@@ -300,7 +321,6 @@ def get_providers(film_id):
 
     close_connection(cnx)
 
-    # khimel added here for now #
     if(len(res) >= 3):
         res = res[:3]
 
@@ -326,7 +346,7 @@ def get_details_by_id(film_id):
 
     res['rating'] = str(res['rating'])[:3]
 
-    ##KHIMEL COMPRESSION
+    ##COMPRESSION
     res['image'] = res['image'].replace("_V1_", "_SL300_")
 
     res['awards'] = get_awards(film_id)
@@ -341,8 +361,6 @@ def get_details_by_id(film_id):
 
 
 def more_like_this(f_id, delta_year, delta_rating):
-
-    # returns a list with [{"id":"nifen", "poster":"link to poster"},]
 
     res = []
 
@@ -466,7 +484,11 @@ def search_return_html():
         context = get_details_by_id(f_id)
     elif(text is not None):
         text = bleach.clean(text)
-        context = get_details_by_name("Inception")
+        lucky_movie = get_film_id_by_text(text)
+        if lucky_movie == '0':
+            context = get_details_by_name(random.choice(movies_names))
+        else:
+            context = get_details_by_id(lucky_movie)
     else:
         query = request.args.get('query', default = None)
         query = bleach.clean(query)
@@ -481,7 +503,7 @@ def search_return_html():
 
     d_cast = get_director_cast(context['director'])
 
-    other_parts = get_other_parts(context['film_id'], 5) ## sequel movies
+    other_parts = get_other_parts(context['film_id'], 8) ## sequel movies
 
     return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast, other_parts=other_parts)
 

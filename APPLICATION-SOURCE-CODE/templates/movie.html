@@ -52,7 +52,7 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					    <div class="card-body">
 							<p class="card-text">
-								{% if context['awards']|length < 1%}<p class="text-center">No awards won</p> {% endif %}
+								{% if context['awards']|length < 1%}<h6 class="text-center">NO AWARDS</h6> {% endif %}
 								{% for award in context['awards'] %}
 									<h6 class="text-center">Awarded {{ award['count'] }} {{award['award'] }}{{'s' if award['count']|string != '1' else ''}}</h6>
 								{% endfor %}
@@ -122,16 +122,14 @@
 				</div>	
 				
 				 </div>
-				 <hr>
-				 <h3 class="text-center"> Do you know? </h3>
   				<div class="card border-0" id="mid-navbar">
-					<div class="card-header">
+					<div class="card-header" style="background-color: transparent; border-bottom-width:0px;">
 						<ul class="nav nav-tabs d-flex justify-content-between">
 							<li class="nav-item">
 								<button class="btn btn-outline-info collapsed"  data-toggle="collapse" data-target="#storyline" aria-pressed="true" aria-controls="storyline"><h6>Rankings</h6></button>
 							</li>
 							<li class="nav-item">
-								<button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h6>{{ context["director"] }} Also Directed</h6></button>
+								<button class="btn btn-outline-info collapsed" data-toggle="collapse" data-target="#tab2" aria-expanded="false" aria-controls="tab2"><h6>Did You Know?</h6></button>
 							</li>
 						</ul>
 					</div>
@@ -151,7 +149,7 @@
 							<div class="card border-0">
 								<div class="card-body">
 									<p  class="card-text">
-										<h6 class=""> {{ context['director'] }} directed these famous actors :</h6>
+										<h6 class=""> Famous actors who had roles in {{ context['director'] }}'s movies: </h6>
 										<ul>
 										{% for actor in d_cast %}
 											<li class=""> {{actor}} </li> 
@@ -228,10 +226,10 @@
 			</div>
 			
 		<!--**********************************-->
-		{% if other_parts|length > 0%}
+		{% if other_parts|length > 0 %}
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">Next in the sequel:</h5>
+					<h5 class="card-title">RELATED MOVIES</h5>
 					<p class="card-text">
 						<ul>
 						{% for movie in other_parts %}

@@ -1,8 +1,60 @@
-CREATE TABLE IF NOT EXISTS NAME_DB (
-	id INT PRIMARY KEY,
-	name VARCHAR(100) NOT NULL,
-	)
+CREATE TABLE IF NOT EXISTS FILM (
+	film_id VARCHAR(15) PRIMARY KEY,
+	title VARCHAR(100) NOT NULL,
+	year INT NOT NULL,
+	image VARCHAR(3000) NOT NULL,
+	summary TEXT NOT NULL,
+	trailer VARCHAR(50) NOT NULL,
+	rating DECIMAL(4,2) NOT NULL,
+	director VARCHAR(50) NOT NULL
+);
 
---- create fulltext index
---- create index
---- define primary keys and foreign keys
+CREATE TABLE IF NOT EXISTS FILM_LOCATION (
+	film_id VARCHAR(15) NOT NULL,
+	location VARCHAR(50) NOT NULL,
+	FOREIGN KEY (film_id) REFERENCES FILM (film_id)
+);
+
+CREATE TABLE IF NOT EXISTS FILM_GENRE (
+	film_id VARCHAR(15) NOT NULL,
+	genre VARCHAR(20) NOT NULL,
+	FOREIGN KEY (film_id) REFERENCES FILM (film_id)
+);
+
+CREATE TABLE IF NOT EXISTS FILM_STAR (
+	film_id VARCHAR(15) NOT NULL,
+	actor_id VARCHAR(15) NOT NULL,
+	FOREIGN KEY (film_id) REFERENCES FILM (film_id)
+);
+
+CREATE TABLE IF NOT EXISTS FILM_PROVIDER (
+	film_id VARCHAR(15) NOT NULL,
+	provider VARCHAR(30) NOT NULL,
+	FOREIGN KEY (film_id) REFERENCES FILM (film_id)
+);
+
+CREATE TABLE IF NOT EXISTS FILM_AWARD (
+	film_id VARCHAR(15) NOT NULL,
+	award VARCHAR(20) NOT NULL,
+	count TINYINT NOT NULL,
+	FOREIGN KEY (film_id) REFERENCES FILM (film_id)
+);
+
+CREATE TABLE IF NOT EXISTS ACTOR (
+	actor_id VARCHAR(15) PRIMARY KEY,
+	actor_name VARCHAR(60) NOT NULL,
+	birthdate VARCHAR(5),
+	image VARCHAR(150)
+);
+
+CREATE FULLTEXT INDEX text_index ON FILM(summary);
+CREATE FULLTEXT INDEX title_index ON FILM(title);
+
+ALTER TABLE FILM_GENRE ADD INDEX genre_index (genre);
+ALTER TABLE FILM_STAR ADD INDEX fs_actor_index (actor_id);
+ALTER TABLE FILM ADD INDEX director_index (director);
+ALTER TABLE FILM ADD INDEX title_index (title);
+ALTER TABLE FILM ADD INDEX year_index (year);
+ALTER TABLE FILM ADD INDEX rating_index (rating);
+ALTER TABLE ACTOR ADD INDEX actor_name_index (actor_name);
+ALTER TABLE ACTOR ADD INDEX actor_birthdate_index (birthdate);
