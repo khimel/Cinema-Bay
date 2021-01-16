@@ -561,7 +561,7 @@ def search_return_html():
 
     d_cast = get_director_cast(context['director'])
 
-    other_parts = get_other_parts(context['film_id'], 6) ## sequel movies
+    other_parts = get_other_parts(context['film_id'], 8) ## sequel movies
 
     return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast, other_parts=other_parts)
 
