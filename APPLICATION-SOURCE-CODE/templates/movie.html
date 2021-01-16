@@ -75,10 +75,10 @@
 										<img id="actor" class="d-block w-100"  src= " {{ actor['image'] if actor['image'] != ' ' else "static/blank.png" }} " alt="blank" height="300">
 										<div class="d-block">
 											<h5 class="text-center">{{ actor["name"] }}</h5>
-											<h6 class="text-center">Average Movie Rating: {{ (actor["avg"]|string)[:3]}} /10</h6>
-											<h6 class="">Famous with movies in :</h6>
+											<h6 class="text-center" style="color: aquamarine;">Average Movie Rating: {{ (actor["avg"]|string)[:3]}} /10</h6>
+											<h6>Starred in:</h6>
 											{% for spec in actor['spec'] %}
-												<span class="">{{'|' if loop.index|string != '1' }} {{ spec }}</span>
+												<span>{{'|' if loop.index|string != '1' }} {{ spec }}</span>
 											{% endfor %}
 										</div>
 									</div>
@@ -215,7 +215,7 @@
 		<!--**********************************-->
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">STREAM PROVIDERS</h5>
+					<h5 class="card-title">STREAMING SERVICES</h5>
 					<p class="card-text">
 						{% for provider in context['providers'] %}
 							<span>{{'|' if loop.index|string != '1' }} {{ provider }} </span>

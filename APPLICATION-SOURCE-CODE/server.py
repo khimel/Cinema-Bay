@@ -9,7 +9,8 @@ import mysql.connector
 app = Flask(__name__)
 
 
-##### functions for connecting and using the DB ####
+##### Functions for connecting and using the DB ####
+
 def connect_to_mysql_server():
     cnx = mysql.connector.connect(user='DbMysql07',
                                   password='BestSqlProject101',
@@ -26,6 +27,10 @@ def connect_to_mysql_server():
 def close_connection(cnx):
     cnx.close()
 
+
+'''
+Full-texte query - returns a film id with plot summary containing given input
+'''
 def get_film_id_by_text(txt):
 
     res = []
@@ -53,7 +58,9 @@ def get_film_id_by_text(txt):
         return res[0]
     return '0'
 
-
+'''
+Returns a list of actors names born in this month
+'''
 def get_born_this_month():
 
     res = []
@@ -83,7 +90,9 @@ def get_born_this_month():
 
     return res
 
-
+'''
+Given a film ID it returns the movie's rankings in each genre
+'''
 def get_ranks(f_id):
 
     res = {}
@@ -116,6 +125,12 @@ def get_ranks(f_id):
         res = dict(list(res.items())[:5])
     return res
 
+'''
+Given a film ID and a threshold (integer),
+it returns a list with films IDs that are other parts (or sequel) of the given film,
+we detemine if the film is another part if it has common number of actors more than
+the given threshold
+'''
 def get_other_parts(f_id, threshold):
     res = []
 
@@ -153,7 +168,10 @@ def get_other_parts(f_id, threshold):
 
     return final 
 
-
+'''
+Given a director name, it returns a list with actors names,
+that participated the most times in this director's movies
+'''
 def get_director_cast(director):
     director = director.replace("'", "''")
     res = []
@@ -181,6 +199,11 @@ def get_director_cast(director):
         res = res[:11]
     return res
 
+
+'''
+Given an actor ID, it returns the genres this actor stars in,
+or specializes in
+'''
 def get_actor_spec(actor_id):
 
     res = []
@@ -211,7 +234,10 @@ def get_actor_spec(actor_id):
     return res
 
 
-#global list with movie names for auto complete
+'''
+Retuns a list with all the movie titles in the DB
+serves auto complete function in the search box
+'''
 def get_movie_names():
     res = []
 
@@ -227,6 +253,10 @@ def get_movie_names():
 
     return res
 
+'''
+Returns a list with movie IDs and their posters,
+serves the carousel in the background of the homepage
+'''
 def get_movie_posters():
     # returns a list with [{"id":"nifen", "poster":"link to poster"},]
     # size of list is 30
@@ -247,7 +277,9 @@ def get_movie_posters():
 
     return res[0:30]
 
-# details =  {"film_id":"", "title":"", "year":"", "image":"", "summary":"","trailer":"", "raiting":"", "director":"", "awards":{"":int, "":int}, "genre":[], "locations":[], "providers":[size of max 3], ("topcast":[{"id":"", "name":"", "img":"", "avg_movie_rating":""}])}
+'''
+Given a movie name, it returns all the details about this movie in a dictionary
+'''
 def get_details_by_name(name):
     
     cnx = connect_to_mysql_server()
@@ -262,6 +294,9 @@ def get_details_by_name(name):
 
     return get_details_by_id(film_id)
 
+'''
+Given a movie ID, it returns a list with the awards it won and their count
+'''
 def get_awards(film_id):
     res = []
 
@@ -278,6 +313,9 @@ def get_awards(film_id):
 
     return res
 
+'''
+Given a movie ID, it returns a list with the movie's genres
+'''
 def get_genres(film_id):
     res = []
 
@@ -293,6 +331,9 @@ def get_genres(film_id):
 
     return res
 
+'''
+Given a movie ID, it returns a list with locations the movie was film at
+'''
 def get_locations(film_id):
     res = []
 
@@ -308,7 +349,10 @@ def get_locations(film_id):
 
     return res[:4]
 
-
+'''
+Given a movie ID, it returns a list with streaming services
+where you can watch the movie
+'''
 def get_providers(film_id):
     res = []
 
@@ -322,12 +366,14 @@ def get_providers(film_id):
 
     close_connection(cnx)
 
-    if(len(res) >= 3):
-        res = res[:3]
+    if(len(res) >= 5):
+        res = res[:5]
 
     return res
 
-
+'''
+Given a movie ID, it returns a dict with all the details of the movie
+'''
 def get_details_by_id(film_id):
 
     res = {}
@@ -360,7 +406,11 @@ def get_details_by_id(film_id):
 
     return res
 
-
+'''
+Given a movie ID, it returns a list with movies that are:
+    1. Premiered close to this movie's year. (by delta_year)
+    2. Rated close to this movie. (by delta_rating)
+'''
 def more_like_this(f_id, delta_year, delta_rating):
 
     res = []
@@ -390,6 +440,9 @@ def more_like_this(f_id, delta_year, delta_rating):
 
     return res
 
+'''
+helper function for get_topcast()
+'''
 def order_list(actors_list, ordered_actors):
 
     ordered_list = []
@@ -402,6 +455,9 @@ def order_list(actors_list, ordered_actors):
 
     return ordered_list
 
+'''
+Returns a list with the top cast of a given movie
+'''
 def get_topcast(f_id):
 
     res = []
@@ -461,6 +517,7 @@ def get_topcast(f_id):
     return res
 
 
+#################### Server code ######################
 
 movies_names = get_movie_names() #global list for auto complete
 
@@ -504,7 +561,7 @@ def search_return_html():
 
     d_cast = get_director_cast(context['director'])
 
-    other_parts = get_other_parts(context['film_id'], 8) ## sequel movies
+    other_parts = get_other_parts(context['film_id'], 6) ## sequel movies
 
     return render_template('movie.html',context=context, movies_names=movies_names, recs=recs, topcast=topcast, d_cast=d_cast, other_parts=other_parts)
 
