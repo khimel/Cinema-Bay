@@ -465,13 +465,16 @@ def get_topcast(f_id):
     cnx = connect_to_mysql_server()
     cur = cnx.cursor()
 
-    query_1 =   (   "SELECT ACTOR.actor_id, ACTOR.actor_name, ACTOR.birthdate, ACTOR.image, AVG(FILM.rating) "
-                "FROM ACTOR, FILM_STAR, FILM "
-                "WHERE FILM_STAR.film_id = " + "'%s'" % f_id + " "
-                "AND FILM_STAR.film_id = FILM.film_id "
-                "AND FILM_STAR.actor_id = ACTOR.actor_id "
-                "GROUP BY ACTOR.actor_id;"
-            )
+    query_1 = ("SELECT ACTOR.actor_id, ACTOR.actor_name, ACTOR.birthdate, ACTOR.image, AVG(FILM.rating) "
+             "FROM ACTOR, FILM_STAR, FILM "                    
+             "WHERE ACTOR.actor_id IN "
+             "(SELECT actor_id "
+             "FROM FILM_STAR "
+             "WHERE FILM_STAR.film_id = " + "'%s'" % f_id +") "
+             "AND FILM_STAR.film_id = FILM.film_id "
+             "AND FILM_STAR.actor_id = ACTOR.actor_id "
+             "GROUP BY ACTOR.actor_id;"
+             )
 
     cur.execute(query_1)
     rows_1 = cur.fetchall()
