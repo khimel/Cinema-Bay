@@ -117,7 +117,7 @@ def get_ranks(f_id):
     rows = cur.fetchall()
 
     for row in rows:
-        res[row[0]] = row[1]
+        res[row[0]] = row[1] + 1
 
 
     close_connection(cnx)
