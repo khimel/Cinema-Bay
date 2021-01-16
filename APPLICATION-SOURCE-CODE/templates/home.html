@@ -71,7 +71,7 @@
                 <div class="col-md-8">
                     <form id="formz" class="form" action="/search" method="GET">
                         <div class="">
-                            <input class="form-control" id="searchBar" type="text" placeholder="Search for a movie or Type anything if you feel lucky" required/>
+                            <input class="form-control" id="searchBar" type="text" placeholder="Search for a movie or type anything if you feel lucky" required/>
                         </div>
                     </form>
                         <div class="text-center mt-3">
@@ -101,13 +101,12 @@
             elem.fadeIn();
         });}, 5 * 1000 );
 
-        function changeVal(id){
-            let val = $("#searchBar").val();
-            if(val != ""){
-                $("#"+id).val(val);
-            }
-            
+    function changeVal(id){
+        let val = $("#searchBar").val();
+        if(val != ""){
+            $("#"+id).val(val);
         }
+    }
 
 </script>
 

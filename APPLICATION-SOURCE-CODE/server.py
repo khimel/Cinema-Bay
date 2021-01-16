@@ -6,9 +6,10 @@ import bleach
 
 import mysql.connector
 
-
 app = Flask(__name__)
 
+
+##### functions for connecting and using the DB ####
 def connect_to_mysql_server():
     cnx = mysql.connector.connect(user='DbMysql07',
                                   password='BestSqlProject101',
