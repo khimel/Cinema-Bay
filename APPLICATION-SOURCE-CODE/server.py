@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request
-
 import datetime
 import random
 import bleach
-
 import mysql.connector
 
 app = Flask(__name__)
@@ -523,7 +521,7 @@ movies_names = get_movie_names() #global list for auto complete
 
 @app.route('/')
 @app.route('/index')
-def index():
+def home():
     born_this_month = get_born_this_month()
 
     movies_posters = get_movie_posters()
@@ -532,11 +530,12 @@ def index():
 
 
 @app.route('/search')
-def search_return_html():
+def movie():
     context = {}
 
     f_id = request.args.get('id', default=None)
     text = request.args.get('text', default=None)
+
     if( f_id is not None):
         f_id = bleach.clean(f_id)
         context = get_details_by_id(f_id)
