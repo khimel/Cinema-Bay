@@ -132,7 +132,7 @@ def get_other_parts(f_id, threshold):
                     "WHERE FILM.film_id = FILM_STAR.film_id "
                     "AND FILM.film_id = '%s'" % f_id + ") "
                 "GROUP BY FILM.film_id "
-                "HAVING shared >  '%s'" % threshold + " "
+                "HAVING shared >  %s" % threshold + " "
                 "ORDER BY FILM.year; "
             )
 
