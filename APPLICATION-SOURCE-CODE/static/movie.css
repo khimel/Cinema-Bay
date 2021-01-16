@@ -86,7 +86,7 @@
       justify-content: center;
     }
     .movie-RSD a{
-    color: rgb(41 0 255 / 68%);
+    color: 0ff;
     text-decoration: none;
     font-size: 17px;
     text-decoration: underline;
@@ -222,9 +222,9 @@
   }
 
   .partz{
-    transition: 1s;
+    transition: 0.5s;
   }
 
   .partz:hover{
-    color:rgb(0, 255, 255);
+    color:blue;
   }
