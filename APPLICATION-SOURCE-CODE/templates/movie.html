@@ -138,17 +138,7 @@
 								<div class="card-body">
 									<p class="card-text ">
 									{% for genre,rank in context['ranks'].items() %}
-										<h4 class="text-center">{{rank}}
-											{%if rank|string == '1' %}
-												<sub>st</sub>
-											{% elif rank|string == '2' %}
-												<sub>nd</sub>
-											{% elif rank|string == '3' %}
-												<sub>rd</sub>
-											{% else %}
-											<sub>th</sub>
-											{% endif %}
-											 in {{ genre }}</h4> 
+										<h4 class="text-center">{{rank}}{%if rank|string == '1' %}<sub>st</sub>{% elif rank|string == '2' %}<sub>nd</sub>{% elif rank|string == '3' %}<sub>rd</sub>{% else %}<sub>th</sub>{% endif %} in {{ genre }}</h4> 
 									{% endfor %}
 									</p>
 								</div>
